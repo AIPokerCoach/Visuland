@@ -13,7 +13,7 @@
         h1 {
             text-align: center;
             margin: 20px 0;
-            color: #fff;
+            color: #333;
         }
     </style>
 </head>
@@ -22,7 +22,7 @@
     <a-scene>
         <a-assets>
             <!-- Load Spanish-themed textures -->
-            <img id="domeInterior" src="https://cdn.aframe.io/a-painter/images/sky.jpg">
+            <img id="domeInterior" src="https://upload.wikimedia.org/wikipedia/commons/3/38/Alhambra_tile.jpg">
             <img id="floorTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
 
             <!-- Dynamically include all image assets -->
@@ -55,28 +55,29 @@
         </a-assets>
 
         <!-- Create a massive dome with a Spanish-themed interior -->
-        <a-sphere src="#domeInterior" radius="150" position="0 75 0" rotation="0 0 0" material="side: double; color: #f5deb3;"></a-sphere>
+        <a-sphere src="#domeInterior" radius="200" position="0 100 0" rotation="0 0 0" material="side: double; repeat: 10 10;"></a-sphere>
 
         <!-- Add a floor with a Spanish-style texture -->
-        <a-plane src="#floorTexture" rotation="-90 0 0" width="500" height="500" position="0 0 0" material="repeat: 20 20;"></a-plane>
+        <a-plane src="#floorTexture" rotation="-90 0 0" width="400" height="400" position="0 0 0" material="repeat: 50 50;"></a-plane>
 
-        <!-- Add image boxes in a grid layout with wider spacing -->
+        <!-- Add image boxes in a tighter grid layout -->
         <script>
-            let xStart = -60;  // Start further left to fit all cubes
-            let zStart = -60;  // Start further back to accommodate rows
-            let rowLength = 14;  // Number of boxes per row to fill the dome
+            let xStart = -80;  // Start further left to fit all cubes
+            let zStart = -80;  // Start further back to accommodate rows
+            let rowLength = 16;  // Number of boxes per row to fit within the larger dome
 
             images.forEach((image, index) => {
-                let x = xStart + (index % rowLength) * 8;  // Wide spacing between objects
-                let z = zStart + Math.floor(index / rowLength) * -8;  // Increase space between rows
+                let x = xStart + (index % rowLength) * 10;  // Adjust spacing between objects
+                let z = zStart + Math.floor(index / rowLength) * -10;  // Increase space between rows
 
-                document.write(`<a-box position="${x} 2 ${z}" src="#${image}" color="#DAA520" width="4" height="4" depth="4"></a-box>`);
+                document.write(`<a-box position="${x} 2 ${z}" src="#${image}" color="#DAA520" width="6" height="6" depth="6" material="opacity: 0.95;"></a-box>`);
             });
         </script>
 
-        <!-- Lighting for Spanish ambience -->
-        <a-light type="ambient" color="#ffdd99" intensity="0.6"></a-light>
-        <a-light type="directional" color="#FFD700" intensity="0.5" position="-1 2 1"></a-light>
+        <!-- Lighting for the dome -->
+        <a-light type="ambient" color="#ffcc99" intensity="0.8"></a-light>
+        <a-light type="directional" color="#FFD700" intensity="0.7" position="-2 4 2"></a-light>
     </a-scene>
 </body>
 </html>
+
