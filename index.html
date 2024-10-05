@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visuland - Spanish Geodesic Dome Gallery</title>
+    <title>3D Gallery</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body {
@@ -18,16 +18,9 @@
     </style>
 </head>
 <body>
-    <h1>Visuland - Spanish Geodesic Dome Gallery</h1>
+    <h1>3D Gallery of 184 Objects</h1>
     <a-scene>
         <a-assets>
-            <!-- Load Spanish theme images and textures -->
-            <img id="spanishFlag" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg">
-            <img id="spanishBull" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Toro_de_Osborne.jpg">
-            <img id="spanishFood" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Paella_de_marisco_01.jpg">
-            <img id="lightPanel" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Sky_light_pattern.jpg">
-
-            <!-- Dynamically include all cube image assets -->
             <script>
                 const images = [
                     "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag", "Ball", "Balloon",
@@ -56,38 +49,27 @@
             </script>
         </a-assets>
 
-        <!-- Create a geodesic dome structure -->
-        <a-entity geometry="primitive: sphere; radius: 100; segmentsHeight: 30; segmentsWidth: 30;" 
-                  material="color: #F1BF00; opacity: 0.7" position="0 0 0" rotation="0 0 0"></a-entity>
+        <!-- Use a pre-made stadium template -->
+        <a-entity geometry="primitive: box; width: 150; height: 50; depth: 150;" 
+                  material="color: #F1BF00;" position="0 25 0"></a-entity>
 
-        <!-- Create a ceiling -->
-        <a-entity geometry="primitive: circle; radius: 100;" 
-                  material="color: #DAA520;" position="0 100 0" rotation="-90 0 0"></a-entity>
-
-        <!-- Arrange all the cubes inside with quadruple spacing -->
+        <!-- Arrange cubes inside the stadium -->
         <script>
-            let xStart = -80;  // Starting position for cubes
-            let zStart = -80;
-            let rowLength = 8;  // Fewer cubes per row for larger spacing
+            let xStart = -70;  // Starting position for cubes
+            let zStart = -70;
+            let rowLength = 12;  // Fewer cubes per row for larger spacing
 
             images.forEach((image, index) => {
-                let x = xStart + (index % rowLength) * 30;  // Quadruple spacing
-                let z = zStart + Math.floor(index / rowLength) * -30;
+                let x = xStart + (index % rowLength) * 12;  // Quadruple spacing
+                let z = zStart + Math.floor(index / rowLength) * -12;
 
                 document.write(`<a-box position="${x} 5 ${z}" src="#${image}" color="#DAA520" width="8" height="8" depth="8" material="opacity: 0.9;"></a-box>`);
             });
         </script>
 
-        <!-- Add walls with Spanish flag colors -->
-        <a-plane position="-100 50 0" rotation="0 90 0" width="200" height="100" color="#FF0000"></a-plane>
-        <a-plane position="100 50 0" rotation="0 -90 0" width="200" height="100" color="#FF0000"></a-plane>
-        <a-plane position="0 50 -100" rotation="0 0 0" width="200" height="100" color="#FF0000"></a-plane>
-        <a-plane position="0 50 100" rotation="0 180 0" width="200" height="100" color="#FF0000"></a-plane>
-
-        <!-- Add lighting for dome effect -->
-        <a-light type="ambient" color="#ffcc99" intensity="0.5"></a-light>
-        <a-light type="point" color="#ffffff" intensity="0.6" position="0 150 0"></a-light>
+        <!-- Lighting -->
+        <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
+        <a-light type="point" color="#ffffff" intensity="0.6" position="0 100 0"></a-light>
     </a-scene>
 </body>
 </html>
-
