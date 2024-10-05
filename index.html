@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visulang Gallery in a Dome</title>
+    <title>Visulang Gallery in a Square</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body { margin: 0; }
@@ -52,16 +52,16 @@
         </a-assets>
         
         <!-- Floor -->
-        <a-plane position="0 -1 0" rotation="-90 0 0" width="108.5" height="108.5" color="#c8102e"></a-plane>
+        <a-plane position="0 -1 0" rotation="-90 0 0" width="113.76" height="113.76" color="#c8102e"></a-plane>
         
         <!-- Ceiling -->
-        <a-plane position="0 2 0" rotation="90 0 0" width="108.5" height="108.5" color="#aa151b"></a-plane>
+        <a-plane position="0 2 0" rotation="90 0 0" width="113.76" height="113.76" color="#aa151b"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="-54 0 0" width="0.16" height="4" depth="108.5" color="#c8102e"></a-box>  <!-- Left Wall -->
-        <a-box position="54 0 0" width="0.16" height="4" depth="108.5" color="#c8102e"></a-box>   <!-- Right Wall -->
-        <a-box position="0 0 -54" width="108.5" height="4" depth="0.16" color="#aa151b"></a-box>  <!-- Back Wall -->
-        <a-box position="0 0 54" width="108.5" height="4" depth="0.16" color="#aa151b"></a-box>   <!-- Front Wall -->
+        <a-box position="-56.88 0 0" width="0.16" height="4" depth="96.8" color="#c8102e"></a-box>  <!-- Left Wall -->
+        <a-box position="56.88 0 0" width="0.16" height="4" depth="96.8" color="#c8102e"></a-box>   <!-- Right Wall -->
+        <a-box position="0 0 -48.4" width="96.8" height="4" depth="0.16" color="#aa151b"></a-box>  <!-- Back Wall -->
+        <a-box position="0 0 48.4" width="96.8" height="4" depth="0.16" color="#aa151b"></a-box>   <!-- Front Wall -->
 
         <!-- Cubes -->
         <script>
