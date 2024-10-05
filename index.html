@@ -46,4 +46,37 @@
                     "Red", "Rice", "Salt", "Sandal", "Scissors", "Scooter", "Seven", "Shampoo", "Sheep", "Shirt", 
                     "Shoe", "Short", "Shovel", "Sister", "Six", "Skin", "Small", "Smile", "Snake", "Sock", "Soup", 
                     "South", "Spinach", "Spoon", "Strawberry", "Study", "Table", "Taco", "Tea", "Teacher", "Ten",
-                    "Three", "
+                    "Three", "Toaster", "Tomato", "Tree", "Triangle", "Truck", "Two", "Wallet", "Want", "Water", 
+                    "Watermelon", "Wheel", "White", "Window", "Yellow"
+                ];
+
+                images.forEach((image) => {
+                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png" style="display:none;">`);
+                });
+            </script>
+        </a-assets>
+
+        <!-- Create a geodesic dome structure -->
+        <a-entity geometry="primitive: sphere; radius: 150; segmentsHeight: 40; segmentsWidth: 40;" 
+                  material="color: #F1BF00; opacity: 0.5" position="0 0 0"></a-entity>
+
+        <!-- Arrange all the cubes inside with larger spacing -->
+        <script>
+            let xStart = -100;  // Starting position
+            let zStart = -100;
+            let rowLength = 10;  // Fewer cubes per row for larger spacing
+
+            images.forEach((image, index) => {
+                let x = xStart + (index % rowLength) * 40;  // Quadruple spacing
+                let z = zStart + Math.floor(index / rowLength) * -40;
+
+                document.write(`<a-box position="${x} 3 ${z}" src="#${image}" color="#DAA520" width="10" height="10" depth="10" material="opacity: 0.9;"></a-box>`);
+            });
+        </script>
+
+        <!-- Add lighting for dome effect -->
+        <a-light type="ambient" color="#ffcc99" intensity="0.7"></a-light>
+        <a-light type="point" color="#ffffff" intensity="0.6" position="0 50 0"></a-light>
+    </a-scene>
+</body>
+</html>
