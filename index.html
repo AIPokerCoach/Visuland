@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Visuland Spanish</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/aframevr/aframe/master/dist/aframe-master.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-sky color="#87CEEB"></a-sky>
+      
+      <!-- Ground -->
+      <a-plane rotation="-90 0 0" width="100" height="100" color="#7CFC00"></a-plane>
+
+      <!-- 3D Object Example -->
+      <a-entity gltf-model="url(path/to/your/3dmodel1.glb)" position="-2 0 -5" scale="1 1 1"
+                onclick="document.getElementById('sound1').play();">
+      </a-entity>
+
+      <a-entity gltf-model="url(path/to/your/3dmodel2.glb)" position="2 0 -5" scale="1 1 1"
+                onclick="document.getElementById('sound2').play();">
+      </a-entity>
+
+      <!-- Sounds -->
+      <a-sound id="sound1" src="url(path/to/your/sound1.mp3)" autoplay="false"></a-sound>
+      <a-sound id="sound2" src="url(path/to/your/sound2.mp3)" autoplay="false"></a-sound>
+
+      <!-- Camera -->
+      <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    </a-scene>
+  </body>
+</html>
