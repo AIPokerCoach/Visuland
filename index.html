@@ -51,31 +51,43 @@
                 ];
 
                 images.forEach((image) => {
-                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png">`);
+                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png" style="display:none;">`);
                 });
             </script>
         </a-assets>
 
-        <!-- Create a geodesic dome structure using a sky object -->
-        <a-entity geometry="primitive: sphere; radius: 200;" material="color: #F1BF00; opacity: 0.2"></a-entity>
+        <!-- Create a geodesic dome structure -->
+        <a-entity geometry="primitive: sphere; radius: 100; segmentsHeight: 30; segmentsWidth: 30;" 
+                  material="color: #F1BF00; opacity: 0.7" position="0 0 0" rotation="0 0 0"></a-entity>
 
-        <!-- Arrange all the cubes inside with larger spacing -->
+        <!-- Create a ceiling -->
+        <a-entity geometry="primitive: circle; radius: 100;" 
+                  material="color: #DAA520;" position="0 100 0" rotation="-90 0 0"></a-entity>
+
+        <!-- Arrange all the cubes inside with quadruple spacing -->
         <script>
-            let xStart = -100;  // Further spread out position to match new space
-            let zStart = -100;
-            let rowLength = 10;  // Fewer cubes per row for larger spacing
+            let xStart = -80;  // Starting position for cubes
+            let zStart = -80;
+            let rowLength = 8;  // Fewer cubes per row for larger spacing
 
             images.forEach((image, index) => {
                 let x = xStart + (index % rowLength) * 30;  // Quadruple spacing
                 let z = zStart + Math.floor(index / rowLength) * -30;
 
-                document.write(`<a-box position="${x} 3 ${z}" src="#${image}" color="#DAA520" width="10" height="10" depth="10" material="opacity: 0.9;"></a-box>`);
+                document.write(`<a-box position="${x} 5 ${z}" src="#${image}" color="#DAA520" width="8" height="8" depth="8" material="opacity: 0.9;"></a-box>`);
             });
         </script>
 
+        <!-- Add walls with Spanish flag colors -->
+        <a-plane position="-100 50 0" rotation="0 90 0" width="200" height="100" color="#FF0000"></a-plane>
+        <a-plane position="100 50 0" rotation="0 -90 0" width="200" height="100" color="#FF0000"></a-plane>
+        <a-plane position="0 50 -100" rotation="0 0 0" width="200" height="100" color="#FF0000"></a-plane>
+        <a-plane position="0 50 100" rotation="0 180 0" width="200" height="100" color="#FF0000"></a-plane>
+
         <!-- Add lighting for dome effect -->
-        <a-light type="ambient" color="#ffcc99" intensity="0.7"></a-light>
-        <a-light type="point" color="#ffffff" intensity="0.6" position="0 50 0"></a-light>
+        <a-light type="ambient" color="#ffcc99" intensity="0.5"></a-light>
+        <a-light type="point" color="#ffffff" intensity="0.6" position="0 150 0"></a-light>
     </a-scene>
 </body>
 </html>
+
