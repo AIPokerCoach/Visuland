@@ -58,16 +58,16 @@
         <a-plane position="0 2 0" rotation="90 0 0" width="50" height="50" color="#c8102e"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="-25 0 0" width="0.2" height="4" depth="50" color="#c8102e"></a-box>
-        <a-box position="25 0 0" width="0.2" height="4" depth="50" color="#c8102e"></a-box>
-        <a-box position="0 0 -25" width="50" height="4" depth="0.2" color="#c8102e"></a-box>
-        <a-box position="0 0 25" width="50" height="4" depth="0.2" color="#c8102e"></a-box>
+        <a-box position="-30 0 0" width="0.2" height="4" depth="55" color="#c8102e"></a-box>
+        <a-box position="30 0 0" width="0.2" height="4" depth="55" color="#c8102e"></a-box>
+        <a-box position="0 0 -30" width="60" height="4" depth="0.2" color="#c8102e"></a-box>
+        <a-box position="0 0 30" width="60" height="4" depth="0.2" color="#c8102e"></a-box>
 
         <!-- Cubes -->
         <script>
-            const spacing = 4.5; // Reduced spacing between cubes by 25%
-            const rows = 14; // 14 rows
-            const cols = 14; // 14 columns
+            const spacing = 2.4; // Adjusted spacing between cubes
+            const rows = 23; // 23 rows
+            const cols = 8; // 8 cubes per row
             
             for (let i = 0; i < images.length; i++) {
                 const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
@@ -78,10 +78,9 @@
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
                 cube.setAttribute('position', `${x} 0.5 ${z}`);
-                cube.setAttribute('width', '2');
-                cube.setAttribute('height', '2');
-                cube.setAttribute('depth', '0.1'); // Makes it a flat image
-                cube.setAttribute('scale', '1 1 1');
+                cube.setAttribute('width', '1'); // Cube size
+                cube.setAttribute('height', '1'); // Cube size
+                cube.setAttribute('depth', '1'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
