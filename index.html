@@ -51,24 +51,23 @@
                 ];
 
                 images.forEach((image) => {
-                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png" style="display:none;">`);
+                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png">`);
                 });
             </script>
         </a-assets>
 
-        <!-- Create a geodesic dome structure -->
-        <a-entity geometry="primitive: sphere; radius: 150; segmentsHeight: 40; segmentsWidth: 40;" 
-                  material="color: #F1BF00; opacity: 0.5" position="0 0 0"></a-entity>
+        <!-- Create a geodesic dome structure using a sky object -->
+        <a-entity geometry="primitive: sphere; radius: 200;" material="color: #F1BF00; opacity: 0.2"></a-entity>
 
         <!-- Arrange all the cubes inside with larger spacing -->
         <script>
-            let xStart = -100;  // Starting position
+            let xStart = -100;  // Further spread out position to match new space
             let zStart = -100;
             let rowLength = 10;  // Fewer cubes per row for larger spacing
 
             images.forEach((image, index) => {
-                let x = xStart + (index % rowLength) * 40;  // Quadruple spacing
-                let z = zStart + Math.floor(index / rowLength) * -40;
+                let x = xStart + (index % rowLength) * 30;  // Quadruple spacing
+                let z = zStart + Math.floor(index / rowLength) * -30;
 
                 document.write(`<a-box position="${x} 3 ${z}" src="#${image}" color="#DAA520" width="10" height="10" depth="10" material="opacity: 0.9;"></a-box>`);
             });
