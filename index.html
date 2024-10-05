@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visuland Spanish - 3D VR Gallery</title>
+    <title>Visuland VR Gallery - Mars Edition</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body {
@@ -13,11 +13,12 @@
         h1 {
             text-align: center;
             margin: 20px 0;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <h1>Visuland Spanish - Interactive 3D VR Gallery</h1>
+    <h1>Visuland VR Gallery - Mars Edition</h1>
     <a-scene>
         <a-assets>
             <!-- Dynamically include all image assets -->
@@ -49,21 +50,27 @@
             </script>
         </a-assets>
 
-        <!-- Create a large grid layout for 184 image boxes -->
+        <!-- Create a large grid layout for 184 image boxes with wider spacing -->
         <script>
-            let xStart = -20;  // Adjusted starting position to fit all images
-            let zStart = -20;
-            let rowLength = 14;  // Change this to fit the number of boxes comfortably in a row
+            let xStart = -50;  // Start further left to accommodate more space
+            let zStart = -50;  // Start further back
+            let rowLength = 12;  // Number of boxes per row
 
             images.forEach((image, index) => {
-                let x = xStart + (index % rowLength) * 2;  // Move x position by 2 units for each image
-                let z = zStart + Math.floor(index / rowLength) * -2;  // Move z position down the line
+                let x = xStart + (index % rowLength) * 8;  // Wider spacing between objects
+                let z = zStart + Math.floor(index / rowLength) * -8;  // Increase space between rows
 
-                document.write(`<a-box position="${x} 1 ${z}" src="#${image}" color="#4CC3D2" width="1.5" height="1.5" depth="1.5"></a-box>`);
+                document.write(`<a-box position="${x} 1 ${z}" src="#${image}" color="#FF6347" width="3" height="3" depth="3"></a-box>`);
             });
         </script>
 
-        <a-sky color="#ECECEC"></a-sky>
+        <!-- Add a Mars-like landscape -->
+        <a-sky src="https://cdn.aframe.io/a-painter/images/sky.jpg" rotation="0 -90 0"></a-sky>
+        <a-plane src="https://cdn.aframe.io/a-painter/images/floor.jpg" rotation="-90 0 0" width="500" height="500" position="0 0 0"></a-plane>
+
+        <!-- Add some lighting for ambience -->
+        <a-light type="ambient" color="#777"></a-light>
+        <a-light type="directional" color="#FFF" intensity="0.5" position="-1 1 0"></a-light>
     </a-scene>
 </body>
 </html>
