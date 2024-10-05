@@ -27,23 +27,32 @@
             <img id="cow" src="images/Cow in Spanish.png">
             <img id="boat" src="images/Boat in Spanish.png">
             <img id="dog" src="images/Dog in Spanish.png">
+            <!-- Add more image assets here -->
         </a-assets>
 
         <!-- Floor -->
-        <a-plane rotation="-90 0 0" width="10" height="10" color="#A0522D" position="0 0 0"></a-plane>
+        <a-plane rotation="-90 0 0" width="30" height="30" color="#A0522D" position="0 0 0"></a-plane>
 
         <!-- Walls -->
-        <a-box position="0 1 -5" depth="0.1" height="2" width="10" color="#FFCCCB"></a-box> <!-- Back Wall -->
-        <a-box position="-5 1 0" depth="0.1" height="2" width="10" color="#FFCCCB"></a-box> <!-- Left Wall -->
-        <a-box position="5 1 0" depth="0.1" height="2" width="10" color="#FFCCCB"></a-box> <!-- Right Wall -->
-        <a-box position="0 1 5" depth="0.1" height="2" width="10" color="#FFCCCB"></a-box> <!-- Front Wall -->
+        <a-box position="0 1 -15" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Back Wall -->
+        <a-box position="-15 1 0" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Left Wall -->
+        <a-box position="15 1 0" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Right Wall -->
+        <a-box position="0 1 15" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Front Wall -->
 
         <!-- Objects -->
-        <a-box position="-3 1 -4" src="#baby" color="#4CC3D2"></a-box>
-        <a-box position="3 1 -4" src="#bed" color="#4CC3D2"></a-box>
-        <a-box position="-3 1 -2" src="#cow" color="#4CC3D2"></a-box>
-        <a-box position="3 1 -2" src="#boat" color="#4CC3D2"></a-box>
-        <a-box position="0 1 -5" src="#dog" color="#4CC3D2"></a-box>
+        <script>
+            const totalImages = 184;
+            const imageNames = [
+                "Baby in Spanish", "Bed in Spanish", "Cow in Spanish", "Boat in Spanish", "Dog in Spanish",
+                // Add the names of all other images here up to 184
+            ];
+
+            for (let i = 0; i < totalImages; i++) {
+                const x = (i % 12) - 6; // Create 12 columns
+                const z = Math.floor(i / 12) * -2; // 2 units apart for rows
+                document.write(`<a-box position="${x} 1 ${z}" src="#${imageNames[i].replace(/ /g, '')}" color="#4CC3D2"></a-box>`);
+            }
+        </script>
 
         <!-- Sky -->
         <a-sky color="#87CEEB"></a-sky>
