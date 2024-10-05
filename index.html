@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visulang VR Gallery</title>
+    <title>Visuland Spanish - 3D VR Gallery</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
         }
         h1 {
             text-align: center;
@@ -19,43 +17,53 @@
     </style>
 </head>
 <body>
-    <h1>Visulang VR Gallery</h1>
+    <h1>Visuland Spanish - Interactive 3D VR Gallery</h1>
     <a-scene>
         <a-assets>
-            <img id="baby" src="images/Baby in Spanish.png">
-            <img id="bed" src="images/Bed in Spanish.png">
-            <img id="cow" src="images/Cow in Spanish.png">
-            <img id="boat" src="images/Boat in Spanish.png">
-            <img id="dog" src="images/Dog in Spanish.png">
-            <!-- Add more image assets here -->
+            <!-- Dynamically include all image assets -->
+            <script>
+                const images = [
+                    "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag", "Ball", "Balloon",
+                    "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle", "Bird", "Boat", "Bone", "Book", 
+                    "Bottle", "Bowl", "Box", "Bracelet", "Brain", "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", 
+                    "Carrot", "Castle", "Cat", "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Clock", "Coffee",
+                    "Coin", "Cold", "Cookie", "Couch", "Cow", "Doctor", "Dog", "Doll", "Door", "Dress", "Duck", 
+                    "Earring", "Egg", "Eight", "Eye", "Face", "Farm", "Finger", "Fire", "Fish", "Five", "Flour", 
+                    "Flower", "Fork", "Four", "Fruit", "Garlic", "Glass", "Glove", "Grape", "Green", "Hand", "Hat",
+                    "Head", "Health", "Heart", "Heavy", "Help", "History", "Hook", "Horse", "Hose", "Hospital", 
+                    "Hot", "House", "Husband", "Jug", "Key", "Kite", "Knife", "Large", "Left", "Leg", "Lemon", 
+                    "Lentil", "Lion", "Long", "Luggage", "Man", "Mattress", "Milk", "Mirror", "Money", "Monkey",
+                    "Month", "Morning", "Mouse", "Mouth", "Mushroom", "Name", "Nest", "Nine", "North", "Nose", 
+                    "Oat", "Office", "Oil", "One", "Onion", "Oven", "Owl", "Oxygen", "Pants", "Pear", "Pen", 
+                    "Pencil", "Pepper", "Pig", "Pink", "Plum", "Pool", "Popcorn", "Purple", "Rabbit", "Rag", 
+                    "Red", "Rice", "Salt", "Sandal", "Scissors", "Scooter", "Seven", "Shampoo", "Sheep", "Shirt", 
+                    "Shoe", "Short", "Shovel", "Sister", "Six", "Skin", "Small", "Smile", "Snake", "Sock", "Soup", 
+                    "South", "Spinach", "Spoon", "Strawberry", "Study", "Table", "Taco", "Tea", "Teacher", "Ten",
+                    "Three", "Toaster", "Tomato", "Tree", "Triangle", "Truck", "Two", "Wallet", "Want", "Water", 
+                    "Watermelon", "Wheel", "White", "Window", "Yellow"
+                ];
+
+                images.forEach((image) => {
+                    document.write(`<img id="${image}" src="images/${image} in Spanish German French and Polish.png">`);
+                });
+            </script>
         </a-assets>
 
-        <!-- Floor -->
-        <a-plane rotation="-90 0 0" width="30" height="30" color="#A0522D" position="0 0 0"></a-plane>
-
-        <!-- Walls -->
-        <a-box position="0 1 -15" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Back Wall -->
-        <a-box position="-15 1 0" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Left Wall -->
-        <a-box position="15 1 0" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Right Wall -->
-        <a-box position="0 1 15" depth="0.1" height="4" width="30" color="#FFCCCB"></a-box> <!-- Front Wall -->
-
-        <!-- Objects -->
+        <!-- Create a large grid layout for 184 image boxes -->
         <script>
-            const totalImages = 184;
-            const imageNames = [
-                "Baby in Spanish", "Bed in Spanish", "Cow in Spanish", "Boat in Spanish", "Dog in Spanish",
-                // Add the names of all other images here up to 184
-            ];
+            let xStart = -20;  // Adjusted starting position to fit all images
+            let zStart = -20;
+            let rowLength = 14;  // Change this to fit the number of boxes comfortably in a row
 
-            for (let i = 0; i < totalImages; i++) {
-                const x = (i % 12) - 6; // Create 12 columns
-                const z = Math.floor(i / 12) * -2; // 2 units apart for rows
-                document.write(`<a-box position="${x} 1 ${z}" src="#${imageNames[i].replace(/ /g, '')}" color="#4CC3D2"></a-box>`);
-            }
+            images.forEach((image, index) => {
+                let x = xStart + (index % rowLength) * 2;  // Move x position by 2 units for each image
+                let z = zStart + Math.floor(index / rowLength) * -2;  // Move z position down the line
+
+                document.write(`<a-box position="${x} 1 ${z}" src="#${image}" color="#4CC3D2" width="1.5" height="1.5" depth="1.5"></a-box>`);
+            });
         </script>
 
-        <!-- Sky -->
-        <a-sky color="#87CEEB"></a-sky>
+        <a-sky color="#ECECEC"></a-sky>
     </a-scene>
 </body>
 </html>
