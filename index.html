@@ -65,7 +65,7 @@
 
         <!-- Cubes -->
         <script>
-            const spacing = 3.6; // Reset spacing back to original
+            const spacing = 5.4; // Reset spacing back to original
             const rows = 23; // 23 rows
             const cols = 8; // 8 cubes per row
             
@@ -78,9 +78,9 @@
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
                 cube.setAttribute('position', `${x} 0.5 ${z}`);
-                cube.setAttribute('width', '2'); // Cube size
-                cube.setAttribute('height', '2'); // Cube size
-                cube.setAttribute('depth', '2'); // Cube size
+                cube.setAttribute('width', '3'); // Cube size
+                cube.setAttribute('height', '3'); // Cube size
+                cube.setAttribute('depth', '3'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
