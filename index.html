@@ -48,8 +48,16 @@
                     imgElement.setAttribute('src', imgPath);
                     document.body.appendChild(imgElement);
                 });
+
+                const azulejosElement = document.createElement('img');
+            azulejosElement.setAttribute('id', 'azulejos');
+            azulejosElement.setAttribute('src', 'textures/azulejos.png'); // Updated path
+            document.body.appendChild(azulejosElement);
             </script>
         </a-assets>
+
+        <!-- Floor with Azulejos -->
+    <a-plane position="0 -1 0" rotation="-90 0 0" width="110" height="110" src="#azulejos" repeat="10 10"></a-plane>
         
         <!-- Floor -->
         <a-plane position="0 0 0" rotation="-90 0 0" width="110" height="110" color="#AA151B"></a-plane>
