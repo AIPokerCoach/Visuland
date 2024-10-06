@@ -39,6 +39,11 @@
                     "Triangle", "Truck", "Two", "Wallet", "Want", "Water", "Watermelon", "Wheel", 
                     "White", "Window", "Yellow"
                 ];
+
+                const sounds = [
+        "Airplane_Spanish_Avión", // Add corresponding sounds here
+        // ... add other sounds in the same order as images
+    ];
            
                 images.forEach((img) => {
                     const imgPath = `images/${img}.png`;
@@ -48,6 +53,21 @@
                     document.body.appendChild(imgElement);
                 });
 
+                sounds.forEach((sound) => {
+            const soundElement = document.createElement('audio');
+            soundElement.setAttribute('id', sound.toLowerCase());
+            soundElement.setAttribute('src', `sounds/${sound}.mp4`); // Path to your sound files
+            document.body.appendChild(soundElement);
+        });
+
+cube.addEventListener('click', function() {
+    const soundId = sounds[i].toLowerCase(); // i corresponds to the current cube index
+    const audio = document.getElementById(soundId);
+    if (audio) {
+        audio.play(); // Play the sound
+    }
+});
+                
                 const azulejosElement = document.createElement('img');
             azulejosElement.setAttribute('id', 'azulejos');
             azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
@@ -57,6 +77,8 @@
     ceilingElement.setAttribute('id', 'ceiling');
     ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
     document.body.appendChild(ceilingElement);
+
+                
 </script>
 
                 
