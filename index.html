@@ -63,14 +63,14 @@
             
         </a-assets>
 
-        <!-- Camera and Controls -->
-        <a-entity id="cameraRig" movement-controls>
-            <!-- Add the camera element with look-controls and wasd-controls for movement -->
-            <a-camera position="0 1.6 0" wasd-controls="acceleration: 25" look-controls>
-                <!-- Add a cursor for interaction (optional) -->
-                <a-cursor color="#FF0000"></a-cursor>
-            </a-camera>
-        </a-entity>
+        <!-- Add the movement-controls attribute to your camera rig -->
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.1">
+    <!-- Update camera entity to include look-controls and joystick-controls -->
+    <a-camera position="0 1.6 0" look-controls joystick-controls="enabled: true">
+        <a-cursor color="#FF0000"></a-cursor>
+    </a-camera>
+</a-entity>
+
 
         <!-- Floor with Azulejos -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
