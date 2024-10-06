@@ -66,7 +66,7 @@
         </a-assets>
 
        <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.15" position="0 1.6 0">
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.25" position="0 1.6 0">
     <!-- Camera entity with look-controls and virtual joystick -->
     <a-camera look-controls>
         <!-- Virtual joystick for movement on mobile -->
@@ -77,23 +77,29 @@
 </a-entity>
 
  <script>
-        // Get the camera rig entity
-        const cameraRig = document.getElementById('cameraRig');
-        
-        // Listen for the wheel event on the whole document
-        document.addEventListener('wheel', function(event) {
-            // Adjust the movement speed for the scroll amount
-            const scrollSpeed = 0.2; // Adjust this value to change scroll sensitivity
-            // Get the camera's current facing direction
+        // Ensure the script runs after the scene and elements have fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const cameraRig = document.getElementById('cameraRig');
             const camera = document.querySelector('#mainCamera');
-            const direction = new THREE.Vector3();
-            camera.object3D.getWorldDirection(direction);
 
-            // Determine scroll direction (forward or backward)
-            const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+            // Listen for the wheel event to detect scroll
+            window.addEventListener('wheel', function(event) {
+                // Set the movement speed for the scroll amount
+                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
 
-            // Calculate new camera rig position based on direction
-            cameraRig.object3D.position.add(direction.multiplyScalar(delta));
+                // Calculate the movement direction
+                const direction = new THREE.Vector3();
+                camera.object3D.getWorldDirection(direction);
+
+                // Determine scroll direction (forward or backward)
+                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+
+                // Adjust the position of the camera rig using the direction vector
+                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                
+                // Apply the new position to the camera rig
+                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+            });
         });
     </script>
 
