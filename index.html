@@ -39,41 +39,38 @@
                     "Triangle", "Truck", "Two", "Wallet", "Want", "Water", "Watermelon", "Wheel", 
                     "White", "Window", "Yellow"
                 ];
-
-                // Load sounds
-                const sounds = images.map(img => {
-                    return `sounds/${img}.mp3`; // Update with the correct path to your sound files
-                });
-
-                images.forEach((img, index) => {
+           
+                images.forEach((img) => {
                     const imgPath = `images/${img}.png`;
                     const imgElement = document.createElement('img');
                     imgElement.setAttribute('id', img.toLowerCase());
                     imgElement.setAttribute('src', imgPath);
                     document.body.appendChild(imgElement);
-
-                    const soundElement = document.createElement('audio');
-                    soundElement.setAttribute('id', `sound-${img.toLowerCase()}`);
-                    soundElement.setAttribute('src', sounds[index]);
-                    document.body.appendChild(soundElement);
                 });
 
                 const azulejosElement = document.createElement('img');
-                azulejosElement.setAttribute('id', 'azulejos');
-                azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-                document.body.appendChild(azulejosElement);
+            azulejosElement.setAttribute('id', 'azulejos');
+            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
+            document.body.appendChild(azulejosElement);
 
-                const ceilingElement = document.createElement('img');
-                ceilingElement.setAttribute('id', 'ceiling');
-                ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
-                document.body.appendChild(ceilingElement);
-            </script>
+    const ceilingElement = document.createElement('img');
+    ceilingElement.setAttribute('id', 'ceiling');
+    ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
+    document.body.appendChild(ceilingElement);
+</script>
+
+                
+            
         </a-assets>
 
         <!-- Floor with Azulejos -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="110" height="110" src="#azulejos" repeat="10 10"></a-plane>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="110" height="110" src="#azulejos" repeat="10 10"></a-plane>
+        
         <a-plane position="0 6 0" rotation="90 0 0" width="110" height="110" src="#ceiling" repeat="10 10"></a-plane>
 
+        
+        
+        
         <!-- Exterior Walls -->
         <a-box position="-55 3 0" width="0.16" height="6" depth="110" color="#F1BF00"></a-box>  <!-- Left Wall -->
         <a-box position="55 3 0" width="0.16" height="6" depth="110" color="#F1BF00"></a-box>   <!-- Right Wall -->
@@ -98,10 +95,6 @@
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
-
-                // Add sound on click
-                cube.setAttribute('sound', `src: #sound-${imgId}; volume: 1;`); // Adjust volume as needed
-
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
