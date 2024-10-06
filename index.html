@@ -83,12 +83,17 @@
             const rows = 15; // Rows
             const cols = 15; // Columns
             
-          <!-- Inside your cube creation loop -->
+       const images = [
+    "Aexplainer1", "Aexplainer2", "Aflag", "Aimage", "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
+    // ... rest of your images
+];
+
+// Create cubes and attach sounds
 for (let i = 0; i < images.length; i++) {
     const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
     const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
     const imgId = images[i].toLowerCase();
-    const soundSrc = `sounds/${imgId}.mp3`; // Sound file path
+    const soundSrc = `sounds/${imgId}.mp3`; // Sound file path matching the image ID
 
     // Create a cube for each image
     const cube = document.createElement('a-box');
