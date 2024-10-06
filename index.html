@@ -58,10 +58,10 @@
         <a-plane position="0 2 0" rotation="90 0 0" width="110" height="110" color="#F1BF00"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="-55 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>  <!-- Left Wall -->
-        <a-box position="55 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>   <!-- Right Wall -->
-        <a-box position="0 0 -55" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>  <!-- Back Wall -->
-        <a-box position="0 0 55" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>   <!-- Front Wall -->
+        <a-box position="0 0 0" width="0.16" height="5" depth="110" color="#AA151B"></a-box>  <!-- Left Wall -->
+        <a-box position="0 0 0" width="0.16" height="5" depth="110" color="#AA151B"></a-box>   <!-- Right Wall -->
+        <a-box position="0 0 0" width="110" height="5" depth="0.16" color="#F1BF00"></a-box>  <!-- Back Wall -->
+        <a-box position="0 0 0" width="110" height="5" depth="0.16" color="#F1BF00"></a-box>   <!-- Front Wall -->
 
         <!-- Cubes -->
         <script>
@@ -77,7 +77,7 @@
                 // Create a cube for each image
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
-                cube.setAttribute('position', `${x} 0.5 ${z}`);
+                cube.setAttribute('position', `${x} 1 ${z}`);
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
