@@ -52,22 +52,22 @@
         </a-assets>
         
         <!-- Floor -->
-        <a-plane position="0 -1 0" rotation="-90 0 0" width="110" height="110" color="AA151B"></a-plane>
+        <a-plane position="0 -1 0" rotation="-90 0 0" width="110" height="110" color="#AA151B"></a-plane>
         
         <!-- Ceiling -->
         <a-plane position="0 2 0" rotation="90 0 0" width="110" height="110" color="#F1BF00"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="0 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>  <!-- Left Wall -->
-        <a-box position="0 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>   <!-- Right Wall -->
-        <a-box position="0 0 0" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>  <!-- Back Wall -->
-        <a-box position="0 0 0" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>   <!-- Front Wall -->
+        <a-box position="-55 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>  <!-- Left Wall -->
+        <a-box position="55 0 0" width="0.16" height="4" depth="110" color="#AA151B"></a-box>   <!-- Right Wall -->
+        <a-box position="0 0 -55" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>  <!-- Back Wall -->
+        <a-box position="0 0 55" width="110" height="4" depth="0.16" color="#F1BF00"></a-box>   <!-- Front Wall -->
 
         <!-- Cubes -->
         <script>
-            const spacing = 7.2; // Reset spacing back to original
-            const rows = 14; // 23 rows
-            const cols = 14; // 8 cubes per row
+            const spacing = 7.2; // Spacing between cubes
+            const rows = 14; // Rows
+            const cols = 14; // Columns
             
             for (let i = 0; i < images.length; i++) {
                 const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
