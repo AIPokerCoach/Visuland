@@ -41,10 +41,11 @@
                 ];
 
                 const sounds = [
-        "Airplane_Spanish_Avión", // Add corresponding sounds here
-        // ... add other sounds in the same order as images
-    ];
-           
+                    "Airplane_Spanish_Avión", "Almond_Spanish_Almendra", "Ankle_Spanish_Tobillo",
+                    "Apple_Spanish_Sartén", "Apron_Spanish_Aprón", "Arm_Spanish_Brazo",
+                    // Add all corresponding sounds here in the same order as images
+                ];
+
                 images.forEach((img) => {
                     const imgPath = `images/${img}.png`;
                     const imgElement = document.createElement('img');
@@ -54,45 +55,19 @@
                 });
 
                 sounds.forEach((sound) => {
-            const soundElement = document.createElement('audio');
-            soundElement.setAttribute('id', sound.toLowerCase());
-            soundElement.setAttribute('src', `sounds/${sound}.mp4`); // Path to your sound files
-            document.body.appendChild(soundElement);
-        });
-
-cube.addEventListener('click', function() {
-    const soundId = sounds[i].toLowerCase(); // i corresponds to the current cube index
-    const audio = document.getElementById(soundId);
-    if (audio) {
-        audio.play(); // Play the sound
-    }
-});
-                
-                const azulejosElement = document.createElement('img');
-            azulejosElement.setAttribute('id', 'azulejos');
-            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-            document.body.appendChild(azulejosElement);
-
-    const ceilingElement = document.createElement('img');
-    ceilingElement.setAttribute('id', 'ceiling');
-    ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
-    document.body.appendChild(ceilingElement);
-
-                
-</script>
-
-                
-            
+                    const soundElement = document.createElement('audio');
+                    soundElement.setAttribute('id', sound.toLowerCase());
+                    soundElement.setAttribute('src', `sounds/${sound}.mp4`); // Path to your sound files
+                    document.body.appendChild(soundElement);
+                });
+            </script>
         </a-assets>
 
         <!-- Floor with Azulejos -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="110" height="110" src="#azulejos" repeat="10 10"></a-plane>
+        <a-plane position="0 0 0" rotation="-90 0 0" width="110" height="110" src="#azulejos" repeat="10 10"></a-plane>
         
         <a-plane position="0 6 0" rotation="90 0 0" width="110" height="110" src="#ceiling" repeat="10 10"></a-plane>
 
-        
-        
-        
         <!-- Exterior Walls -->
         <a-box position="-55 3 0" width="0.16" height="6" depth="110" color="#F1BF00"></a-box>  <!-- Left Wall -->
         <a-box position="55 3 0" width="0.16" height="6" depth="110" color="#F1BF00"></a-box>   <!-- Right Wall -->
@@ -117,10 +92,19 @@ cube.addEventListener('click', function() {
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
+
+                // Add the click event listener
+                cube.addEventListener('click', function() {
+                    const soundId = sounds[i].toLowerCase(); // Use the same index to get the sound
+                    const audio = document.getElementById(soundId);
+                    if (audio) {
+                        audio.play(); // Play the sound
+                    }
+                });
+
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
     </a-scene>
 </body>
 </html>
-
