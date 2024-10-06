@@ -83,7 +83,7 @@
             const rows = 15; // Rows
             const cols = 15; // Columns
             
-            <!-- Inside your cube creation loop -->
+          <!-- Inside your cube creation loop -->
 for (let i = 0; i < images.length; i++) {
     const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
     const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
@@ -115,9 +115,12 @@ cubes.forEach((cube) => {
         const sound = cube.querySelector('a-sound');
         if (sound) {
             sound.components.sound.playSound(); // Play the sound on click
+        } else {
+            console.warn('No sound found for this cube.');
         }
     });
 });
+
 
         </script>
     </a-scene>
