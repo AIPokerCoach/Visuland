@@ -155,6 +155,17 @@ cube.addEventListener('click', (event) => {
                 
                 document.querySelector('a-scene').appendChild(cube);
             }
+
+// Add a click event listener to the scene
+scene.addEventListener('click', (event) => {
+    // Check if the click was on a cube
+    if (event.target.tagName === 'A-BOX') {
+        // Clicked on a cube; do nothing (the cube's click event handles the sound)
+    } else {
+        // Clicked outside a cube; do nothing or add any other functionality if needed
+    }
+});
+            
         </script>
     </a-scene>
 </body>
