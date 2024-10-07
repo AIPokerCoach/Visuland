@@ -126,6 +126,16 @@
         <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" src="#wallTexture"></a-box>  <!-- Back Wall -->
         <a-box position="0 3 62.5" width="125" height="6" depth="0.16" src="#wallTexture"></a-box>   <!-- Front Wall -->
 
+          <!-- Invisible Boundary Walls -->
+        <a-box position="0 3 -62.7" width="125" height="10" depth="0.1" color="transparent" opacity="0"></a-box>  <!-- Boundary Back -->
+        <a-box position="0 3 62.7" width="125" height="10" depth="0.1" color="transparent" opacity="0"></a-box>   <!-- Boundary Front -->
+        <a-box position="-62.7 3 0" width="0.1" height="10" depth="125" color="transparent" opacity="0"></a-box>  <!-- Boundary Left -->
+        <a-box position="62.7 3 0" width="0.1" height="10" depth="125" color="transparent" opacity="0"></a-box>   <!-- Boundary Right -->
+        <a-box position="0 8 0" rotation="-90 0 0" width="125" height="125" color="transparent" opacity="0"></a-box> <!-- Top Boundary -->
+        <a-box position="0 -0.1 0" rotation="90 0 0" width="125" height="125" color="transparent" opacity="0"></a-box> <!-- Bottom Boundary -->
+
+        
+
         <!-- Cubes -->
         <script>
             const spacing = 7.2; // Spacing between cubes
