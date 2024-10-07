@@ -19,6 +19,10 @@
 
         
         <a-assets>
+
+<audio id="airplane-sound" src="sounds/Airplane.mp3"></audio>
+
+            
             <!-- Load images -->
             <script>
                 const images = [
@@ -139,6 +143,13 @@
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
+
+// Add the click event to play sound
+cube.addEventListener('click', () => {
+    const sound = document.querySelector('#airplane-sound');
+    sound.play();
+});
+                
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
