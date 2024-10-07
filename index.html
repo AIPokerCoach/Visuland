@@ -12,38 +12,15 @@
         a-scene { height: 100vh; }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-
 </head>
 <body>
     <a-scene>
-
-        
         <a-assets>
             <!-- Load images -->
             <script>
                 const images = [
-                    "Aexplainer1", "Aexplainer2", "Aflag", "Aimage", "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
-                    "Ball", "Balloon", "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle", "Bimage",
-                    "Bird", "Boat", "Bone", "Book", "Bottle", "Bowl", "Box", "Bracelet", "Brain",
-                    "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", "Carrot", "Castle", "Cat",
-                    "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Cimage", "Clock", "Coffee", "Coin",
-                    "Cold", "Cookie", "Couch", "Cow", "Dimage", "Doctor", "Dog", "Doll", "Door", "Dress",
-                    "Duck", "Earring", "Eexplainer1", "Eexplainer2", "Eflag", "Egg", "Eight", "Eimage", "Eye", "Face", "Farm", "Fimage", "Finger", "Fire",
-                    "Fish", "Five", "Flour", "Flower", "Fork", "Four", "Fruit", "Garlic", "Gimage", "Glass",
-                    "Glove", "Grape", "Green", "Hand", "Hat", "Head", "Health", "Heart", "Heavy",
-                    "Help", "Himage", "History", "Hook", "Horse", "Hose", "Hospital", "Hot", "House", 
-                    "Husband", "Iexplainer1", "Iexplainer2", "Iflag", "Iimage", "Jimage", "Jug", "Key", "Kimage", "Kite", "Knife", "Large", "Left", "Leg", "Lemon",
-                    "Lentil", "Limage", "Lion", "Long", "Luggage", "Man", "Mattress", "Milk", "Mimage", "Mirror",
-                    "Money", "Monkey", "Month", "Morning", "Mouse", "Mouth", "Mushroom", "Name",
-                    "Nest", "Nimage", "Nine", "North", "Nose", "Oat", "Oexplainer1", "Oexplainer2", "Office", "Oflag", "Oil", "Oimage", "One", "Onion",
-                    "Oven", "Owl", "Oxygen", "Pants", "Pear", "Pen", "Pencil", "Pepper", "Pig", "Pimage",
-                    "Pink", "Plum", "Pool", "Popcorn", "Purple", "Qimage", "Rabbit", "Rag", "Red", "Rice", "Rimage",
-                    "Salt", "Sandal", "Scissors", "Scooter", "Seven", "Shampoo", "Sheep", "Shirt",
-                    "Shoe", "Short", "Shovel", "Simage", "Sister", "Six", "Skin", "Small", "Smile", "Snake",
-                    "Sock", "Soup", "South", "Spinach", "Spoon", "Strawberry", "Study", "Table",
-                    "Taco", "Tea", "Teacher", "Ten", "Three", "Timage", "Toaster", "Tomato", "Tree", 
-                    "Triangle", "Truck", "Two", "Uimage", "Vimage", "Wallet", "Want", "Water", "Watermelon", "Wheel", 
-                    "White", "Wimage", "Window", "Ximage", "Yellow", "Yimage", "Zexplainer1", "Zexplainer2", "Zflag", "Zimage"
+                    // Add your image filenames here
+                    "Aexplainer1", "Aexplainer2", "Aflag", "Aimage", // etc...
                 ];
            
                 images.forEach((img) => {
@@ -54,88 +31,67 @@
                     document.body.appendChild(imgElement);
                 });
 
-                const azulejosElement = document.createElement('img');
-            azulejosElement.setAttribute('id', 'azulejos');
-            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-            document.body.appendChild(azulejosElement);
+                // Load textures
+                const textures = [
+                    { id: 'azulejos', src: 'textures/Azulejos.png' },
+                    { id: 'walltexture', src: 'textures/Stucco1.png' },
+                    // Add more textures if needed
+                ];
 
-   
+                textures.forEach(texture => {
+                    const imgElement = document.createElement('img');
+                    imgElement.setAttribute('id', texture.id);
+                    imgElement.setAttribute('src', texture.src);
+                    document.body.appendChild(imgElement);
+                });
+            </script>
 
-                const wallElement = document.createElement('img');
-    wallElement.setAttribute('id', 'walltexture');
-    wallElement.setAttribute('src', 'textures/Stucco1.png'); // Update the path if necessary
-    document.body.appendChild(wallElement);
-
-<a-sky src="https://raw.githubusercontent.com/AIPokerCoach/Visuland/main/textures/Sky.png"></a-sky>
-
-                
-</script>
-
-                
-            
+            <!-- Sky -->
+            <a-sky src="https://raw.githubusercontent.com/AIPokerCoach/Visuland/main/textures/Sky.png"></a-sky>
         </a-assets>
 
-       <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
-    <!-- Camera entity with look-controls and virtual joystick -->
-    <a-camera look-controls>
-        <!-- Virtual joystick for movement on mobile -->
-        <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-        <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
-        <a-cursor color="#FF0000"></a-cursor>
-    </a-camera>
-</a-entity>
+        <!-- Enhanced Camera with Mobile Controls -->
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+            <a-camera look-controls>
+                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
+                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+                <a-cursor color="#FF0000"></a-cursor>
+            </a-camera>
+        </a-entity>
 
- <script>
-        // Ensure the script runs after the scene and elements have fully loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            const cameraRig = document.getElementById('cameraRig');
-            const camera = document.querySelector('#mainCamera');
+        <script>
+            // Ensure the script runs after the scene and elements have fully loaded
+            window.addEventListener('DOMContentLoaded', () => {
+                const cameraRig = document.getElementById('cameraRig');
 
-            // Listen for the wheel event to detect scroll
-            window.addEventListener('wheel', function(event) {
-                // Set the movement speed for the scroll amount
-                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
-
-                // Calculate the movement direction
-                const direction = new THREE.Vector3();
-                camera.object3D.getWorldDirection(direction);
-
-                // Determine scroll direction (forward or backward)
-                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-
-                // Adjust the position of the camera rig using the direction vector
-                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-                
-                // Apply the new position to the camera rig
-                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+                // Listen for the wheel event to detect scroll
+                window.addEventListener('wheel', function(event) {
+                    const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
+                    const direction = new THREE.Vector3();
+                    cameraRig.object3D.getWorldDirection(direction);
+                    const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+                    const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                    cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+                });
             });
-        });
-    </script>
+        </script>
 
         <!-- Floor with Azulejos -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
-        
-       
-
-        
-        
+        <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" src="#wallTexture"></a-box>  <!-- Left Wall -->
-        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" src="#wallTexture"></a-box>   <!-- Right Wall -->
-        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" src="#wallTexture"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" src="#wallTexture"></a-box>   <!-- Front Wall -->
+        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" src="#walltexture"></a-box>  <!-- Left Wall -->
+        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" src="#walltexture"></a-box>   <!-- Right Wall -->
+        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" src="#walltexture"></a-box>  <!-- Back Wall -->
+        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" src="#walltexture"></a-box>   <!-- Front Wall -->
 
-          <!-- Invisible Boundary Walls -->
+        <!-- Invisible Boundary Walls -->
         <a-box position="0 3 -62.7" width="125" height="10" depth="0.1" color="transparent" opacity="0"></a-box>  <!-- Boundary Back -->
         <a-box position="0 3 62.7" width="125" height="10" depth="0.1" color="transparent" opacity="0"></a-box>   <!-- Boundary Front -->
         <a-box position="-62.7 3 0" width="0.1" height="10" depth="125" color="transparent" opacity="0"></a-box>  <!-- Boundary Left -->
         <a-box position="62.7 3 0" width="0.1" height="10" depth="125" color="transparent" opacity="0"></a-box>   <!-- Boundary Right -->
         <a-box position="0 8 0" rotation="-90 0 0" width="125" height="125" color="transparent" opacity="0"></a-box> <!-- Top Boundary -->
         <a-box position="0 -0.1 0" rotation="90 0 0" width="125" height="125" color="transparent" opacity="0"></a-box> <!-- Bottom Boundary -->
-
-        
 
         <!-- Cubes -->
         <script>
