@@ -19,6 +19,9 @@
 
         
         <a-assets>
+
+<audio id="Aexplainer1" src="https://raw.githubusercontent.com/your-username/your-repo/main/sounds/Aexplainer1.mp3"></audio>
+            
             <!-- Load images -->
             <script>
                 const images = [
@@ -78,6 +81,7 @@
         <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
         <a-cursor color="#FF0000"></a-cursor>
     </a-camera>
+
 </a-entity>
 
  <script>
@@ -106,6 +110,37 @@
             });
         });
     </script>
+
+        <script>
+            // Map your cube positions to sound files (e.g., cube1 -> Aexplainer1)
+            const soundMapping = {
+                'cube1': 'Aexplainer1', // Example mapping for cube1
+                // Add mappings for other cubes and sound files as needed
+            };
+
+            // Get all cubes in the scene
+            const container = document.querySelector('#cubes-container');
+            const cubes = container.querySelectorAll('a-box');
+
+            // Attach click listeners to cubes based on mapping
+            cubes.forEach((cube) => {
+                const soundId = soundMapping[cube.id];
+                if (soundId) {
+                    // Find the corresponding sound element from a-assets
+                    const sound = document.querySelector(`#${soundId}`);
+                    if (sound) {
+                        // Attach a click event listener to play the sound
+                        cube.addEventListener('click', () => {
+                            sound.play();
+                            console.log(`Playing sound: ${sound.src} for cube: ${cube.id}`);
+                        });
+                    }
+                } else {
+                    // No sound mapped for this cube
+                    console.log(`No sound file associated with cube: ${cube.id}`);
+                }
+            });
+        </script>
 
         <!-- Floor with Azulejos -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
