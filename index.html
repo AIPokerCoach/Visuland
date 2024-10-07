@@ -321,6 +321,7 @@
                 const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
                 const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
                 const imgId = images[i].toLowerCase();
+                const soundId = sounds[i] ? sounds[i].toLowerCase() : null; // Only set soundId if it exists
 
                 // Create a cube for each image
                 const cube = document.createElement('a-box');
@@ -332,10 +333,16 @@
 
 cube.addEventListener('click', (event) => {
             event.stopPropagation(); // Prevent event bubbling to the scene
-            const sound = document.querySelector('#airplane-sound');
-            sound.currentTime = 0; // Reset sound to start
+    if (soundId) { // Check if soundId exists
+            const sound = document.querySelector(`#${soundId}`); // Select the corresponding sound
+        if (sound) { // Check if the sound element exists
+sound.currentTime = 0; // Reset sound to start
             sound.play();
+            }
+        }
 });
+
+                scene.appendChild(cube);
                 
                 document.querySelector('a-scene').appendChild(cube);
             }
