@@ -130,6 +130,8 @@
             const spacing = 7.2; // Spacing between cubes
             const rows = 15; // Rows
             const cols = 15; // Columns
+
+            const scene = document.querySelector('a-scene'); // Cache the scene reference
             
             for (let i = 0; i < images.length; i++) {
                 const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
@@ -144,10 +146,11 @@
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
 
-// Add the click event to play sound
-cube.addEventListener('click', () => {
-    const sound = document.querySelector('#airplane-sound');
-    sound.play();
+cube.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent event bubbling to the scene
+            const sound = document.querySelector('#airplane-sound');
+            sound.currentTime = 0; // Reset sound to start
+            sound.play();
 });
                 
                 document.querySelector('a-scene').appendChild(cube);
