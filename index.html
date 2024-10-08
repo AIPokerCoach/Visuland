@@ -7,17 +7,15 @@
     <meta name="description" content="Learn Spanish through playful mnemonics in a virtual world! Our innovative method uses vibrant image associations to make language learning fun and effective. Designed for all learners, including those with special needs, we ensure everyone can thrive in their Spanish language journey.">
 
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
     <style>
         body { margin: 0; }
         a-scene { height: 100vh; }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-
 </head>
 <body>
     <a-scene>
 
-        
         <a-assets>
             <!-- Load images -->
             <script>
@@ -46,13 +44,6 @@
                     "White", "Wimage", "Window", "Ximage", "Yellow", "Yimage", "Zexplainer1", "Zexplainer2", "Zflag", "Zimage"
                 ];
 
-<a-assets>
-    <audio id="airplane-sound" src="sounds/Airplane.mp3"></audio>
-    <!-- Add more audio elements for other sounds -->
-</a-assets>
-
-
-                
                 images.forEach((img) => {
                     const imgPath = `images/${img}.png`;
                     const imgElement = document.createElement('img');
@@ -62,104 +53,98 @@
                 });
 
                 const azulejosElement = document.createElement('img');
-            azulejosElement.setAttribute('id', 'azulejos');
-            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-            document.body.appendChild(azulejosElement);
+                azulejosElement.setAttribute('id', 'azulejos');
+                azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
+                document.body.appendChild(azulejosElement);
 
-    const ceilingElement = document.createElement('img');
-    ceilingElement.setAttribute('id', 'ceiling');
-    ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
-    document.body.appendChild(ceilingElement);
-</script>
+                const ceilingElement = document.createElement('img');
+                ceilingElement.setAttribute('id', 'ceiling');
+                ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
+                document.body.appendChild(ceilingElement);
+            </script>
 
-                
-            
+            <audio id="airplane-sound" src="sounds/Airplane.mp3"></audio>
+            <!-- Add more audio elements for other sounds -->
         </a-assets>
 
        <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
-    <!-- Camera entity with look-controls and virtual joystick -->
-    <a-camera look-controls>
-        <!-- Virtual joystick for movement on mobile -->
-        <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-        <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
-        <a-cursor color="#FF0000"></a-cursor>
-    </a-camera>
-</a-entity>
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+            <a-camera look-controls>
+                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
+                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+                <a-cursor color="#FF0000"></a-cursor>
+            </a-camera>
+        </a-entity>
 
- <script>
-        // Ensure the script runs after the scene and elements have fully loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            const cameraRig = document.getElementById('cameraRig');
-            const camera = document.querySelector('#mainCamera');
+        <script>
+            // Ensure the script runs after the scene and elements have fully loaded
+            window.addEventListener('DOMContentLoaded', () => {
+                const cameraRig = document.getElementById('cameraRig');
+                const camera = document.querySelector('#mainCamera');
 
-            // Listen for the wheel event to detect scroll
-            window.addEventListener('wheel', function(event) {
-                // Set the movement speed for the scroll amount
-                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
-
-                // Calculate the movement direction
-                const direction = new THREE.Vector3();
-                camera.object3D.getWorldDirection(direction);
-
-                // Determine scroll direction (forward or backward)
-                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-
-                // Adjust the position of the camera rig using the direction vector
-                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-                
-                // Apply the new position to the camera rig
-                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+                // Listen for the wheel event to detect scroll
+                window.addEventListener('wheel', function(event) {
+                    const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
+                    const direction = new THREE.Vector3();
+                    camera.object3D.getWorldDirection(direction);
+                    const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+                    const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                    cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+                });
             });
-        });
-    </script>
+        </script>
 
         <!-- Floor with Azulejos -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
-        
+        <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
         <a-plane position="0 6 0" rotation="90 0 0" width="125" height="125" src="#ceiling" repeat="10 10"></a-plane>
 
-        
-        
-        
         <!-- Exterior Walls -->
         <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
         <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
         <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>   <!-- Front Wall -->
+        <a-box position="0 3 62.5" widthYour HTML code has several issues that could prevent the cubes and floor from displaying correctly in your A-Frame scene. Here are some key areas to check and fix:
 
-        <!-- Cubes -->
-     <script>
-    const spacing = 7.2; // Spacing between cubes
-    const rows = 15; // Rows
-    const cols = 15; // Columns
+1. **Assets Declaration**:
+   - The `<a-assets>` tag is improperly declared. You have nested a `<script>` tag within `<a-assets>`, which is not valid. Instead, you should only place `<audio>` and `<img>` elements inside `<a-assets>`. The following should work better:
 
-    for (let i = 0; i < images.length; i++) {
-        const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
-        const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
-        const imgId = images[i].toLowerCase();
+   ```html
+   <a-assets>
+       <audio id="airplane-sound" src="sounds/Airplane.mp3"></audio>
+       <img id="azulejos" src="textures/Azulejos.png" />
+       <img id="ceiling" src="textures/Ceiling.png" />
+       <!-- Add other images here -->
+   </a-assets>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const spacing = 7.2; // Spacing between cubes
+        const rows = 15; // Rows
+        const cols = 15; // Columns
+        
+        const scene = document.querySelector('a-scene');
 
-        // Create a cube for each image
-        const cube = document.createElement('a-box');
-        cube.setAttribute('src', `#${imgId}`);
-        cube.setAttribute('position', `${x} 1.5 ${z}`);
-        cube.setAttribute('width', '3'); // Cube size
-        cube.setAttribute('height', '3'); // Cube size
-        cube.setAttribute('depth', '3'); // Cube size
+        for (let i = 0; i < images.length; i++) {
+            const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
+            const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
+            const imgId = images[i].toLowerCase();
 
-        // Add click event listener to play sound
-        cube.addEventListener('click', () => {
-            const soundId = `${imgId}-sound`;
-            const soundElement = document.querySelector(`#${soundId}`);
-            if (soundElement) {
-                soundElement.play();
-            }
-        });
+            // Create a cube for each image
+            const cube = document.createElement('a-box');
+            cube.setAttribute('src', `#${imgId}`);
+            cube.setAttribute('position', `${x} 1.5 ${z}`);
+            cube.setAttribute('width', '3'); // Cube size
+            cube.setAttribute('height', '3'); // Cube size
+            cube.setAttribute('depth', '3'); // Cube size
 
-        document.querySelector('a-scene').appendChild(cube);
-    }
+            // Add click event listener to play sound
+            cube.addEventListener('click', () => {
+                const soundId = `${imgId}-sound`;
+                const soundElement = document.querySelector(`#${soundId}`);
+                if (soundElement) {
+                    soundElement.play();
+                }
+            });
+
+            scene.appendChild(cube);
+        }
+    });
 </script>
-
-    </a-scene>
-</body>
-</html>
