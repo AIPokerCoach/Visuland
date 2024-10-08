@@ -61,7 +61,7 @@
         <a-sky src="textures/test3602.jpg"></a-sky>
 
         <!-- Enhanced Camera with Mobile Controls -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 3.35" position="-5 1.4 20">
             <a-camera look-controls>
                 <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
                 <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
@@ -91,7 +91,7 @@
 
         <!-- Cubes -->
         <script>
-            const spacing = 180;
+            const spacing = 100;
             const rows = 15;
             const cols = 15;
             
@@ -102,10 +102,10 @@
 
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
-                cube.setAttribute('position', `${x} -100 ${z}`);
-                cube.setAttribute('width', '75');
-                cube.setAttribute('height', '75');
-                cube.setAttribute('depth', '75');
+                cube.setAttribute('position', `${x} -200 ${z}`);
+                cube.setAttribute('width', '50');
+                cube.setAttribute('height', '50');
+                cube.setAttribute('depth', '50');
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
