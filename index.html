@@ -107,10 +107,10 @@
     <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
         
         <!-- Exterior Walls -->
-        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
-        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
-        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>   <!-- Front Wall -->
+        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00" static-body></a-box>  <!-- Left Wall -->
+        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00" static-body></a-box>   <!-- Right Wall -->
+        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#F1BF00" static-body></a-box>  <!-- Back Wall -->
+        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#F1BF00" static-body></a-box>   <!-- Front Wall -->
 
         <!-- Cubes -->
         <script>
