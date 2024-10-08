@@ -91,7 +91,7 @@
         </script>
 
         <!-- Floor with Azulejos -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
+        <a-plane position="0 -10 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
 
         <!-- Cubes -->
         <script>
@@ -106,7 +106,7 @@
 
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
-                cube.setAttribute('position', `${x} 1.5 ${z}`);
+                cube.setAttribute('position', `${x} -10 ${z}`);
                 cube.setAttribute('width', '3');
                 cube.setAttribute('height', '3');
                 cube.setAttribute('depth', '3');
