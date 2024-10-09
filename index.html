@@ -64,38 +64,39 @@
     ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
     document.body.appendChild(ceilingElement);
 
- // Load sounds
-        const sounds = [
-             "airplane", "almond", "ankle", "apple", "apron", "arm", "art", "baby", "bag",
-    "ball", "balloon", "bathroom", "bear", "bed", "bee", "belt", "bench", "bicycle",
-    "bird", "boat", "bone", "book", "bottle", "bowl", "box", "bracelet", "brain",
-    "bread", "broom", "bucket", "cake", "candy", "car", "carrot", "castle", "cat",
-    "chair", "cheese", "cherry", "chicken", "chocolate", "clock", "coffee", "coin",
-    "cold", "cookie", "couch", "cow", "doctor", "dog", "doll", "door", "dress",
-    "duck", "earring", "egg", "eight", "eye", "face", "farm", "finger", "fire",
-    "fish", "five", "flour", "flower", "fork", "four", "fruit", "garlic", "glass",
-    "glove", "grape", "green", "hand", "hat", "head", "health", "heart", "heavy",
-    "help", "history", "hook", "horse", "hose", "hospital", "hot", "house", "husband",
-    "jug", "key", "kite", "knife", "large", "left", "leg", "lemon", "lentil", "lion",
-    "long", "luggage", "man", "mattress", "milk", "mirror", "money", "monkey", "month",
-    "morning", "mouse", "mouth", "mushroom", "name", "nest", "nine", "north", "nose",
-    "oat", "office", "oil", "one", "onion", "oven", "owl", "oxygen", "pants", "pear",
-    "pen", "pencil", "pepper", "pig", "pink", "plum", "pool", "popcorn", "purple",
-    "rabbit", "rag", "red", "rice", "salt", "sandal", "scissors", "scooter", "seven",
-    "shampoo", "sheep", "shirt", "shoe", "short", "shovel", "sister", "six", "skin",
-    "small", "smile", "snake", "sock", "soup", "south", "spinach", "spoon", "strawberry",
-    "study", "table", "taco", "tea", "teacher", "ten", "three", "toaster", "tomato",
-    "tree", "triangle", "truck", "two", "wallet", "want", "water", "watermelon", 
-    "wheel", "white", "window", "yellow"
-        ];
+// Load sounds
+const sounds = [
+    "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
+    "Ball", "Balloon", "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle",
+    "Bird", "Boat", "Bone", "Book", "Bottle", "Bowl", "Box", "Bracelet", "Brain",
+    "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", "Carrot", "Castle", "Cat",
+    "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Clock", "Coffee", "Coin",
+    "Cold", "Cookie", "Couch", "Cow", "Doctor", "Dog", "Doll", "Door", "Dress",
+    "Duck", "Earring", "Egg", "Eight", "Eye", "Face", "Farm", "Finger", "Fire",
+    "Fish", "Five", "Flour", "Flower", "Fork", "Four", "Fruit", "Garlic", "Glass",
+    "Glove", "Grape", "Green", "Hand", "Hat", "Head", "Health", "Heart", "Heavy",
+    "Help", "History", "Hook", "Horse", "Hose", "Hospital", "Hot", "House", "Husband",
+    "Jug", "Key", "Kite", "Knife", "Large", "Left", "Leg", "Lemon", "Lentil", "Lion",
+    "Long", "Luggage", "Man", "Mattress", "Milk", "Mirror", "Money", "Monkey", "Month",
+    "Morning", "Mouse", "Mouth", "Mushroom", "Name", "Nest", "Nine", "North", "Nose",
+    "Oat", "Office", "Oil", "One", "Onion", "Oven", "Owl", "Oxygen", "Pants", "Pear",
+    "Pen", "Pencil", "Pepper", "Pig", "Pink", "Plum", "Pool", "Popcorn", "Purple",
+    "Rabbit", "Rag", "Red", "Rice", "Salt", "Sandal", "Scissors", "Scooter", "Seven",
+    "Shampoo", "Sheep", "Shirt", "Shoe", "Short", "Shovel", "Sister", "Six", "Skin",
+    "Small", "Smile", "Snake", "Sock", "Soup", "South", "Spinach", "Spoon", "Strawberry",
+    "Study", "Table", "Taco", "Tea", "Teacher", "Ten", "Three", "Toaster", "Tomato",
+    "Tree", "Triangle", "Truck", "Two", "Wallet", "Want", "Water", "Watermelon", 
+    "Wheel", "White", "Window", "Yellow"
+];
 
-        sounds.forEach((sound) => {
-            const soundPath = `sounds/${sound}.mp3`; // Assuming your sounds are in .mp3 format
-            const audioElement = document.createElement('audio');
-            audioElement.setAttribute('id', sound.toLowerCase());
-            audioElement.setAttribute('src', soundPath);
-            document.body.appendChild(audioElement);
-        });
+sounds.forEach((sound) => {
+    const soundPath = `sounds/${sound}.mp3`; // Assuming your sounds are in .mp3 format
+    const audioElement = document.createElement('audio');
+    audioElement.setAttribute('id', sound.toLowerCase());
+    audioElement.setAttribute('src', soundPath);
+    document.body.appendChild(audioElement);
+});
+
 
 
                 
