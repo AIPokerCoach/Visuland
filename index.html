@@ -12,7 +12,20 @@
         a-scene { height: 100vh; }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-
+<script>
+    AFRAME.registerComponent('camera-boundary', {
+        schema: {
+            min: {type: 'vec3', default: {x: -62.5, y: 1.4, z: -62.5}},
+            max: {type: 'vec3', default: {x: 62.5, y: 1.4, z: 62.5}}
+        },
+        tick: function () {
+            const position = this.el.object3D.position;
+            position.x = Math.max(this.data.min.x, Math.min(this.data.max.x, position.x));
+            position.y = Math.max(this.data.min.y, Math.min(this.data.max.y, position.y));
+            position.z = Math.max(this.data.min.z, Math.min(this.data.max.z, position.z));
+        }
+    });
+</script>
 </head>
 <body>
     <a-scene>
@@ -70,7 +83,7 @@
         </a-assets>
 
        <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+<a-entity id="cameraRig" camera-boundary movement-controls="fly: false; speed: 0.35" position="-5 1.4 20">
     <!-- Camera entity with look-controls and virtual joystick -->
     <a-camera look-controls>
         <!-- Virtual joystick for movement on mobile -->
