@@ -25,7 +25,7 @@
             <img id="sphere6" src="textures/test3607.png">
         </a-assets>
 
-        <!-- Camera with Fly Controls -->
+        <!-- Camera with Arrow Key Controls -->
         <a-entity id="cameraRig" position="0 1.4 0">
             <a-camera 
                 look-controls 
@@ -45,6 +45,43 @@
         <a-sphere src="#sphere5" radius="1" position="0 3 0" side="double"></a-sphere>
         <a-sphere src="#sphere6" radius="1" position="0 -1 0" side="double"></a-sphere>
     </a-scene>
+
+    <script>
+        // Custom control setup for arrow keys
+        AFRAME.registerComponent('arrow-controls', {
+            schema: {
+                speed: {type: 'number', default: 0.1}
+            },
+            init: function () {
+                this.el.sceneEl.addEventListener('keydown', (event) => {
+                    const camera = this.el.getObject3D('camera');
+                    switch (event.key) {
+                        case 'ArrowUp':
+                            camera.position.z -= this.data.speed;
+                            break;
+                        case 'ArrowDown':
+                            camera.position.z += this.data.speed;
+                            break;
+                        case 'ArrowLeft':
+                            camera.position.x -= this.data.speed;
+                            break;
+                        case 'ArrowRight':
+                            camera.position.x += this.data.speed;
+                            break;
+                        case 'PageUp':
+                            camera.position.y += this.data.speed;
+                            break;
+                        case 'PageDown':
+                            camera.position.y -= this.data.speed;
+                            break;
+                    }
+                });
+            }
+        });
+
+        // Add arrow-controls to the camera
+        document.querySelector('a-camera').setAttribute('arrow-controls', '');
+    </script>
 </body>
 </html>
 
