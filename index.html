@@ -63,6 +63,26 @@
     ceilingElement.setAttribute('id', 'ceiling');
     ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
     document.body.appendChild(ceilingElement);
+
+const cubes = [
+    { name: "Aexplainer1", position: [-50.1, 1.5, -50.1], sound: "sounds/Aexplainer1.mp3" },
+    { name: "Aexplainer2", position: [-42.9, 1.5, -50.1], sound: "sounds/Aexplainer2.mp3" },
+    { name: "Aflag", position: [-35.7, 1.5, -50.1], sound: "sounds/Aflag.mp3" },
+    { name: "Aimage", position: [-28.5, 1.5, -50.1], sound: "sounds/Aimage.mp3" },
+    { name: "Airplane", position: [-21.3, 1.5, -50.1], sound: "sounds/Airplane.mp3" },
+    { name: "Almond", position: [-14.1, 1.5, -50.1], sound: "sounds/Almond.mp3" },
+    { name: "Ankle", position: [-6.9, 1.5, -50.1], sound: "sounds/Ankle.mp3" },
+    { name: "Apple", position: [0.3, 1.5, -50.1], sound: "sounds/Apple.mp3" },
+    { name: "Apron", position: [7.5, 1.5, -50.1], sound: "sounds/Apron.mp3" },
+    { name: "Arm", position: [14.7, 1.5, -50.1], sound: "sounds/Arm.mp3" },
+    { name: "Art", position: [21.9, 1.5, -50.1], sound: "sounds/Art.mp3" },
+    { name: "Baby", position: [29.1, 1.5, -50.1], sound: "sounds/Baby.mp3" },
+    { name: "Bag", position: [36.3, 1.5, -50.1], sound: "sounds/Bag.mp3" },
+    { name: "Ball", position: [43.5, 1.5, -50.1], sound: "sounds/Ball.mp3" },
+    { name: "Balloon", position: [50.7, 1.5, -50.1], sound: "sounds/Balloon.mp3" }
+];
+
+                
 </script>
 
                 
@@ -141,6 +161,36 @@
                 cube.setAttribute('depth', '3'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
             }
+            // Step 2: Function to check if the click is inside the cube area
+function isClickInsideCube(clickPosition, cube) {
+    const cubeSize = 1; // Adjust this to the half-size of your cubes
+    const [x, y, z] = cube.position;
+
+    return (
+        clickPosition[0] >= x - cubeSize && clickPosition[0] <= x + cubeSize &&
+        clickPosition[1] >= y - cubeSize && clickPosition[1] <= y + cubeSize &&
+        clickPosition[2] >= z - cubeSize && clickPosition[2] <= z + cubeSize
+    );
+}
+
+// Step 3: Add the click event listener
+document.addEventListener('click', function(event) {
+    // Convert event coordinates to world coordinates if needed
+    const clickPosition = [event.clientX, event.clientY, -50.1]; // Adjust the Z as needed based on your setup
+
+    for (const cube of cubes) {
+        if (isClickInsideCube(clickPosition, cube)) {
+            playSound(cube.sound);
+            break; // Exit loop after playing sound
+        }
+    }
+});
+
+// Function to play sound
+function playSound(soundPath) {
+    const audio = new Audio(soundPath);
+    audio.play();
+}
         </script>
     </a-scene>
 </body>
