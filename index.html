@@ -183,7 +183,7 @@ sounds.forEach((sound) => {
             console.log(`Cube with image ${imgId} clicked!`);
             
             // Optionally: Play the corresponding sound
-            const soundElement = document.getElementById(imgId);
+            const soundElement = document.getElementById(imgId.toLowerCase());
             if (soundElement) {
                 soundElement.play();
             }
