@@ -98,15 +98,13 @@
         <!-- Spheres for each face of the cube -->
         <script>
             const sphereRadius = 1; // Radius of each sphere
-            const distanceBetweenSpheres = 2; // Distance between the centers of the spheres
-
             const positions = [
-                { x: 0, y: 0, z: distanceBetweenSpheres },   // Front
-                { x: 0, y: 0, z: -distanceBetweenSpheres },  // Back
-                { x: distanceBetweenSpheres, y: 0, z: 0 },   // Right
-                { x: -distanceBetweenSpheres, y: 0, z: 0 },  // Left
-                { x: 0, y: distanceBetweenSpheres, z: 0 },   // Top
-                { x: 0, y: -distanceBetweenSpheres, z: 0 },  // Bottom
+                { x: 2, y: 0, z: 0 },    // Right
+                { x: -2, y: 0, z: 0 },   // Left
+                { x: 0, y: 2, z: 0 },    // Top
+                { x: 0, y: -2, z: 0 },   // Bottom
+                { x: 0, y: 0, z: 2 },    // Front
+                { x: 0, y: 0, z: -2 }    // Back
             ];
 
             positions.forEach((pos, index) => {
@@ -117,9 +115,9 @@
                 sphere.setAttribute('color', '#FFF'); // Optional: add color to the sphere
                 sphere.setAttribute('class', 'clickable');
 
-                // Adding event listener to handle clicks
+                // Add click event for spheres
                 sphere.addEventListener('click', () => {
-                    alert(`You clicked on Sphere ${index + 1}: Immersive Spanish!`);
+                    alert(`Sphere ${index + 1} clicked!`);
                 });
 
                 document.querySelector('a-scene').appendChild(sphere);
