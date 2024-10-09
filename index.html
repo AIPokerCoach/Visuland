@@ -71,7 +71,7 @@
        <!-- Enhanced Camera with Mobile Controls -->
 <a-entity id="cameraRig" position="-5 1.4 20" dynamic-body>
     <!-- Camera entity with look-controls and virtual joystick -->
-    <a-camera look-controls>
+    <a-camera look-controls collision-check>
         <!-- Virtual joystick for movement on mobile -->
         <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
         <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
@@ -138,9 +138,38 @@
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
+                cube.setAttribute('collision-check', ''); // Add collision-check component
+                cube.setAttribute('dynamic-body', ''); // Add dynamic-body component
+                cube.addEventListener('collide', function (e) {
+    console.log('Cube collided with', e.detail.body.el);
+});
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
+        <script>
+  AFRAME.registerComponent('collision-check', {
+    init: function () {
+      this.raycaster = new THREE.Raycaster();
+      this.cameraEl = this.el.querySelector('[camera]');
+    },
+    tick: function () {
+      const cameraPos = new THREE.Vector3();
+      this.cameraEl.object3D.getWorldPosition(cameraPos);
+
+      const direction = new THREE.Vector3();
+      this.cameraEl.object3D.getWorldDirection(direction);
+
+      this.raycaster.set(cameraPos, direction);
+      const intersects = this.raycaster.intersectObjects(this.el.sceneEl.children, true);
+
+      if (intersects.length > 0) {
+        // Step back if intersecting
+        this.cameraEl.object3D.position.add(direction.multiplyScalar(-0.1));
+      }
+    }
+  });
+</script>
+
     </a-scene>
 </body>
 </html>
