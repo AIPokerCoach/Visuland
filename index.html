@@ -63,64 +63,6 @@
     ceilingElement.setAttribute('id', 'ceiling');
     ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
     document.body.appendChild(ceilingElement);
-
-const cubes = [
-    { name: "Aexplainer1", position: [-50.1, 1.5, -50.1], sound: "sounds/Aexplainer1.mp3" },
-    { name: "Aexplainer2", position: [-42.9, 1.5, -50.1], sound: "sounds/Aexplainer2.mp3" },
-    { name: "Aflag", position: [-35.7, 1.5, -50.1], sound: "sounds/Aflag.mp3" },
-    { name: "Aimage", position: [-28.5, 1.5, -50.1], sound: "sounds/Aimage.mp3" },
-    { name: "Airplane", position: [-21.3, 1.5, -50.1], sound: "sounds/Airplane.mp3" },
-    { name: "Almond", position: [-14.1, 1.5, -50.1], sound: "sounds/Almond.mp3" },
-    { name: "Ankle", position: [-6.9, 1.5, -50.1], sound: "sounds/Ankle.mp3" },
-    { name: "Apple", position: [0.3, 1.5, -50.1], sound: "sounds/Apple.mp3" },
-    { name: "Apron", position: [7.5, 1.5, -50.1], sound: "sounds/Apron.mp3" },
-    { name: "Arm", position: [14.7, 1.5, -50.1], sound: "sounds/Arm.mp3" },
-    { name: "Art", position: [21.9, 1.5, -50.1], sound: "sounds/Art.mp3" },
-    { name: "Baby", position: [29.1, 1.5, -50.1], sound: "sounds/Baby.mp3" },
-    { name: "Bag", position: [36.3, 1.5, -50.1], sound: "sounds/Bag.mp3" },
-    { name: "Ball", position: [43.5, 1.5, -50.1], sound: "sounds/Ball.mp3" },
-    { name: "Balloon", position: [50.7, 1.5, -50.1], sound: "sounds/Balloon.mp3" }
-];
- // Function to load sound
-        const loadSound = (url) => {
-            return new Promise((resolve) => {
-                const audio = new Audio(url);
-                audio.addEventListener('canplaythrough', () => resolve(audio), { once: true });
-                audio.load();
-            });
-        };
-
-        // Load all sounds
-        const soundPromises = cubes.map(cube => loadSound(cube.sound));
-        Promise.all(soundPromises).then(audioElements => {
-            const audioMap = {};
-            cubes.forEach((cube, index) => {
-                audioMap[cube.name] = audioElements[index];
-            });
-
-            // Click event listener
-            window.addEventListener('click', (event) => {
-                const clickPos = [event.clientX, event.clientY]; // You will replace this with your actual 3D position checking
-
-                // Check for each cube if the clicked position matches the cube's position
-                for (const cube of cubes) {
-                    // Use a simple distance check
-                    // Replace with your actual logic to check if clickPos matches the cube's position
-                    const distance = Math.sqrt(
-                        Math.pow(cube.position[0] - clickPos[0], 2) +
-                        Math.pow(cube.position[1] - clickPos[1], 2)
-                    );
-
-                    // If within a certain range, play the sound
-                    if (distance < 10) { // Adjust range as needed
-                        audioMap[cube.name].currentTime = 0; // Rewind to start
-                        audioMap[cube.name].play();
-                        break; // Play one sound per click
-                    }
-                }
-            });
-        });
-                
 </script>
 
                 
@@ -128,7 +70,7 @@ const cubes = [
         </a-assets>
 
        <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-50.1 1.4 -50.1">
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
     <!-- Camera entity with look-controls and virtual joystick -->
     <a-camera look-controls>
         <!-- Virtual joystick for movement on mobile -->
@@ -199,7 +141,6 @@ const cubes = [
                 cube.setAttribute('depth', '3'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
             }
-            
         </script>
     </a-scene>
 </body>
