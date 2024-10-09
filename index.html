@@ -3,126 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immersive Spanish: Visulang’s Mnemonic VR Experience</title>
-    <meta name="description" content="Learn Spanish through playful mnemonics in a virtual world! Our innovative method uses vibrant image associations to make language learning fun and effective. Designed for all learners, including those with special needs, we ensure everyone can thrive in their Spanish language journey.">
-
+    <title>Simple Six Spheres</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body { margin: 0; }
         a-scene { height: 100vh; }
     </style>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 </head>
 <body>
     <a-scene>
-        <a-assets>
-            <!-- Load images -->
-            <script>
-                const images = [
-                    "Aexplainer1", "Aexplainer2", "Aflag", "Aimage", "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
-                    "Ball", "Balloon", "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle", "Bimage",
-                    "Bird", "Boat", "Bone", "Book", "Bottle", "Bowl", "Box", "Bracelet", "Brain",
-                    "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", "Carrot", "Castle", "Cat",
-                    "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Cimage", "Clock", "Coffee", "Coin",
-                    "Cold", "Cookie", "Couch", "Cow", "Dimage", "Doctor", "Dog", "Doll", "Door", "Dress",
-                    "Duck", "Earring", "Eexplainer1", "Eexplainer2", "Eflag", "Egg", "Eight", "Eimage", "Eye", "Face", "Farm", "Fimage", "Finger", "Fire",
-                    "Fish", "Five", "Flour", "Flower", "Fork", "Four", "Fruit", "Garlic", "Gimage", "Glass",
-                    "Glove", "Grape", "Green", "Hand", "Hat", "Head", "Health", "Heart", "Heavy",
-                    "Help", "Himage", "History", "Hook", "Horse", "Hose", "Hospital", "Hot", "House", 
-                    "Husband", "Iexplainer1", "Iexplainer2", "Iflag", "Iimage", "Jimage", "Jug", "Key", "Kimage", "Kite", "Knife", "Large", "Left", "Leg", "Lemon",
-                    "Lentil", "Limage", "Lion", "Long", "Luggage", "Man", "Mattress", "Milk", "Mimage", "Mirror",
-                    "Money", "Monkey", "Month", "Morning", "Mouse", "Mouth", "Mushroom", "Name",
-                    "Nest", "Nimage", "Nine", "North", "Nose", "Oat", "Oexplainer1", "Oexplainer2", "Office", "Oflag", "Oil", "Oimage", "One", "Onion",
-                    "Oven", "Owl", "Oxygen", "Pants", "Pear", "Pen", "Pencil", "Pepper", "Pig", "Pimage",
-                    "Pink", "Plum", "Pool", "Popcorn", "Purple", "Qimage", "Rabbit", "Rag", "Red", "Rice", "Rimage",
-                    "Salt", "Sandal", "Scissors", "Scooter", "Seven", "Shampoo", "Sheep", "Shirt",
-                    "Shoe", "Short", "Shovel", "Simage", "Sister", "Six", "Skin", "Small", "Smile", "Snake",
-                    "Sock", "Soup", "South", "Spinach", "Spoon", "Strawberry", "Study", "Table",
-                    "Taco", "Tea", "Teacher", "Ten", "Three", "Timage", "Toaster", "Tomato", "Tree", 
-                    "Triangle", "Truck", "Two", "Uimage", "Vimage", "Wallet", "Want", "Water", "Watermelon", "Wheel", 
-                    "White", "Wimage", "Window", "Ximage", "Yellow", "Yimage", "Zexplainer1", "Zexplainer2", "Zflag", "Zimage"
-                ];
+        <a-sky color="#87CEEB"></a-sky>
 
-                images.forEach((img) => {
-                    const imgPath = `images/${img}.png`;
-                    const imgElement = document.createElement('img');
-                    imgElement.setAttribute('id', img.toLowerCase());
-                    imgElement.setAttribute('src', imgPath);
-                    document.body.appendChild(imgElement);
-                });
+        <a-camera position="0 1.6 10"></a-camera>
 
-                const azulejosElement = document.createElement('img');
-                azulejosElement.setAttribute('id', 'azulejos');
-                azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-                document.body.appendChild(azulejosElement);
-            </script>
-        </a-assets>
+        <!-- Spheres -->
+        <a-sphere position="2 1 0" radius="1" color="#FF0000"></a-sphere>  <!-- Right -->
+        <a-sphere position="-2 1 0" radius="1" color="#00FF00"></a-sphere> <!-- Left -->
+        <a-sphere position="0 3 0" radius="1" color="#0000FF"></a-sphere>  <!-- Top -->
+        <a-sphere position="0 -1 0" radius="1" color="#FFFF00"></a-sphere> <!-- Bottom -->
+        <a-sphere position="0 1 2" radius="1" color="#FF00FF"></a-sphere>  <!-- Front -->
+        <a-sphere position="0 1 -2" radius="1" color="#00FFFF"></a-sphere> <!-- Back -->
 
-        <!-- Enhanced Camera with Mobile Controls -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
-            <a-camera look-controls>
-                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
-                <a-cursor color="#FF0000"></a-cursor>
-            </a-camera>
-        </a-entity>
-
-        <script>
-            // Ensure the script runs after the scene and elements have fully loaded
-            window.addEventListener('DOMContentLoaded', () => {
-                const cameraRig = document.getElementById('cameraRig');
-
-                // Listen for the wheel event to detect scroll
-                window.addEventListener('wheel', function(event) {
-                    const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
-                    const direction = new THREE.Vector3();
-                    cameraRig.object3D.getWorldDirection(direction);
-                    const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-                    const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-                    cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
-                });
-            });
-        </script>
-
-        <!-- Floor with Azulejos -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
-        
-        <a-sky src="textures/test36010.jpg"></a-sky>
-
-        <!-- Exterior Walls -->
-        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
-        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
-        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>   <!-- Front Wall -->
-
-        <!-- Spheres for each face of the cube -->
-        <script>
-            const sphereRadius = 1; // Radius of each sphere
-            const positions = [
-                { x: 2, y: 0, z: 0 },    // Right
-                { x: -2, y: 0, z: 0 },   // Left
-                { x: 0, y: 2, z: 0 },    // Top
-                { x: 0, y: -2, z: 0 },   // Bottom
-                { x: 0, y: 0, z: 2 },    // Front
-                { x: 0, y: 0, z: -2 }    // Back
-            ];
-
-            positions.forEach((pos, index) => {
-                const sphere = document.createElement('a-sphere');
-                sphere.setAttribute('src', '#Aimage'); // You can use any image here
-                sphere.setAttribute('radius', sphereRadius);
-                sphere.setAttribute('position', `${pos.x} ${pos.y} ${pos.z}`);
-                sphere.setAttribute('color', '#FFF'); // Optional: add color to the sphere
-                sphere.setAttribute('class', 'clickable');
-
-                // Add click event for spheres
-                sphere.addEventListener('click', () => {
-                    alert(`Sphere ${index + 1} clicked!`);
-                });
-
-                document.querySelector('a-scene').appendChild(sphere);
-            });
-        </script>
     </a-scene>
 </body>
 </html>
+
