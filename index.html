@@ -25,11 +25,11 @@
             <img id="sphere6" src="textures/test3607.png">
         </a-assets>
 
-        <!-- Enhanced Camera with Mobile Controls -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.003" position="0 1.4 10">
-            <a-camera look-controls>
-                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+        <!-- Enhanced Camera with Controls -->
+        <a-entity id="cameraRig" position="0 1.4 0">
+            <a-camera 
+                look-controls 
+                wasd-controls="acceleration: 200">
                 <a-cursor color="#FF0000"></a-cursor>
             </a-camera>
         </a-entity>
