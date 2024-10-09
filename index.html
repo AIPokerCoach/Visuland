@@ -59,7 +59,7 @@
         </a-assets>
 
         <!-- Enhanced Camera with Mobile Controls -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 3.35" position="-5 1.4 20">
             <a-camera look-controls>
                 <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
                 <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
@@ -112,12 +112,15 @@
                 sphere.setAttribute('src', '#Aimage'); // You can use any image here
                 sphere.setAttribute('radius', sphereRadius);
                 sphere.setAttribute('position', `${pos.x} ${pos.y} ${pos.z}`);
-                sphere.setAttribute('color', '#FFF'); // Optional: add color to the sphere
+                sphere.setAttribute('color', '#FFF'); // Optional: change color
+                sphere.setAttribute('scale', '1.5 1.5 1.5'); // Adjust size
+                sphere.setAttribute('animation', 'property: rotation; to: 0 360 0; loop: true; dur: 10000');
                 sphere.setAttribute('class', 'clickable');
 
-                // Adding event listener to handle clicks
-                sphere.addEventListener('click', () => {
-                    alert(`You clicked on Sphere ${index + 1}: Immersive Spanish!`);
+                // Add event listener for click event
+                sphere.addEventListener('click', function () {
+                    const imgSrc = this.getAttribute('src');
+                    console.log(`Sphere ${index + 1} clicked, showing: ${imgSrc}`);
                 });
 
                 document.querySelector('a-scene').appendChild(sphere);
