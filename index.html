@@ -175,6 +175,20 @@
                 cube.setAttribute('width', '3'); // Cube size
                 cube.setAttribute('height', '3'); // Cube size
                 cube.setAttribute('depth', '3'); // Cube size
+
+                 // Add a click event listener to the cube
+        cube.addEventListener('click', () => {
+            // Handle what happens when the cube is clicked
+            console.log(`Cube with image ${imgId} clicked!`);
+            
+            // Optionally: Play the corresponding sound
+            const soundElement = document.getElementById(imgId);
+            if (soundElement) {
+                soundElement.play();
+            }
+        });
+
+        // Add the cube to the scene
                 document.querySelector('a-scene').appendChild(cube);
             }
         </script>
