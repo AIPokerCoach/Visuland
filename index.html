@@ -17,6 +17,7 @@
 <body>
     <a-scene>
 
+        
         <a-assets>
             <!-- Load images -->
             <script>
@@ -44,7 +45,7 @@
                     "Triangle", "Truck", "Two", "Uimage", "Vimage", "Wallet", "Want", "Water", "Watermelon", "Wheel", 
                     "White", "Wimage", "Window", "Ximage", "Yellow", "Yimage", "Zexplainer1", "Zexplainer2", "Zflag", "Zimage"
                 ];
-
+           
                 images.forEach((img) => {
                     const imgPath = `images/${img}.png`;
                     const imgElement = document.createElement('img');
@@ -54,47 +55,66 @@
                 });
 
                 const azulejosElement = document.createElement('img');
-                azulejosElement.setAttribute('id', 'azulejos');
-                azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-                document.body.appendChild(azulejosElement);
+            azulejosElement.setAttribute('id', 'azulejos');
+            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
+            document.body.appendChild(azulejosElement);
 
-                const ceilingElement = document.createElement('img');
-                ceilingElement.setAttribute('id', 'ceiling');
-                ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
-                document.body.appendChild(ceilingElement);
-            </script>
+    const ceilingElement = document.createElement('img');
+    ceilingElement.setAttribute('id', 'ceiling');
+    ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
+    document.body.appendChild(ceilingElement);
+</script>
+
+                
+            
         </a-assets>
 
-        <!-- Enhanced Camera with Mobile Controls -->
-        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
-            <a-camera look-controls>
-                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
-                <a-cursor color="#FF0000"></a-cursor>
-            </a-camera>
-        </a-entity>
+       <!-- Enhanced Camera with Mobile Controls -->
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+    <!-- Camera entity with look-controls and virtual joystick -->
+    <a-camera look-controls>
+        <!-- Virtual joystick for movement on mobile -->
+        <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
+        <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+        <a-cursor color="#FF0000"></a-cursor>
+    </a-camera>
+</a-entity>
 
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                const cameraRig = document.getElementById('cameraRig');
-                const camera = document.querySelector('#mainCamera');
+ <script>
+        // Ensure the script runs after the scene and elements have fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const cameraRig = document.getElementById('cameraRig');
+            const camera = document.querySelector('#mainCamera');
 
-                window.addEventListener('wheel', function(event) {
-                    const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
-                    const direction = new THREE.Vector3();
-                    camera.object3D.getWorldDirection(direction);
+            // Listen for the wheel event to detect scroll
+            window.addEventListener('wheel', function(event) {
+                // Set the movement speed for the scroll amount
+                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
 
-                    const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-                    const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-                    cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
-                });
+                // Calculate the movement direction
+                const direction = new THREE.Vector3();
+                camera.object3D.getWorldDirection(direction);
+
+                // Determine scroll direction (forward or backward)
+                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+
+                // Adjust the position of the camera rig using the direction vector
+                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                
+                // Apply the new position to the camera rig
+                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
             });
-        </script>
+        });
+    </script>
 
         <!-- Floor with Azulejos -->
-        <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
+    <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
+        
         <a-plane position="0 6 0" rotation="90 0 0" width="125" height="125" src="#ceiling" repeat="10 10"></a-plane>
 
+        
+        
+        
         <!-- Exterior Walls -->
         <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
         <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
@@ -115,70 +135,13 @@
                 // Create a cube for each image
                 const cube = document.createElement('a-box');
                 cube.setAttribute('src', `#${imgId}`);
-                cube.setAttribute('position', `${x} 3 ${z}`);
-                cube.setAttribute('width', '2');
-                cube.setAttribute('height', '2');
-                cube.setAttribute('depth', '2');
-                cube.setAttribute('color', '#F1BF00');
-                cube.setAttribute('class', 'clickable');
-                cube.setAttribute('sound', 'src: #click-sound; volume: 0.5;');
-
-                // Create text for each cube
-                const text = document.createElement('a-text');
-                text.setAttribute('value', `Word ${i + 1}`); // Adjust the text as needed
-                text.setAttribute('position', `${x} 4 ${z}`); // Slightly above the cube
-                text.setAttribute('align', 'center');
-                text.setAttribute('color', '#000'); // Set text color
-                text.setAttribute('scale', '1 1 1');
-
-                // Append cube and text to the scene
+                cube.setAttribute('position', `${x} 1.5 ${z}`);
+                cube.setAttribute('width', '3'); // Cube size
+                cube.setAttribute('height', '3'); // Cube size
+                cube.setAttribute('depth', '3'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
-                document.querySelector('a-scene').appendChild(text);
             }
         </script>
-
-        <!-- Sphere Creation and Adding Content -->
-        <script>
-            const spherePositions = [
-                { x: 0, y: 5, z: -30 }, // Sphere 1
-                { x: 10, y: 5, z: -30 }, // Sphere 2
-                { x: -10, y: 5, z: -30 }, // Sphere 3
-                { x: 0, y: 5, z: -25 }, // Sphere 4
-                { x: 10, y: 5, z: -25 }, // Sphere 5
-                { x: -10, y: 5, z: -25 } // Sphere 6
-            ];
-
-            spherePositions.forEach((pos, index) => {
-                const sphere = document.createElement('a-sphere');
-                sphere.setAttribute('position', `${pos.x} ${pos.y} ${pos.z}`);
-                sphere.setAttribute('radius', '1.5');
-                sphere.setAttribute('color', '#A100FF'); // Change color for visibility
-                sphere.setAttribute('opacity', '0.5'); // Make it semi-transparent
-                sphere.setAttribute('class', 'clickable');
-                sphere.setAttribute('sound', 'src: #click-sound; volume: 0.5;');
-
-                // Create text for each sphere
-                const sphereText = document.createElement('a-text');
-                sphereText.setAttribute('value', `Sphere ${index + 1}`); // Adjust text as necessary
-                sphereText.setAttribute('position', `${pos.x} ${pos.y + 2} ${pos.z}`); // Position above the sphere
-                sphereText.setAttribute('align', 'center');
-                sphereText.setAttribute('color', '#FFF'); // Text color
-                sphereText.setAttribute('scale', '1 1 1');
-
-                // Append sphere and text to the scene
-                document.querySelector('a-scene').appendChild(sphere);
-                document.querySelector('a-scene').appendChild(sphereText);
-            });
-        </script>
-
-        <a-sound id="click-sound" src="sounds/click.mp3"></a-sound>
-
-        <!-- Lights -->
-        <a-light type="ambient" color="#888"></a-light>
-        <a-light type="directional" color="#fff" position="-1 1 1" intensity="0.5"></a-light>
-
-        <!-- Sky -->
-        <a-sky color="#5E98C0"></a-sky>
     </a-scene>
 </body>
 </html>
