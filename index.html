@@ -25,11 +25,12 @@
             <img id="sphere6" src="textures/test3607.png">
         </a-assets>
 
-        <!-- Enhanced Camera with Fly Controls -->
+        <!-- Camera with Fly Controls -->
         <a-entity id="cameraRig" position="0 1.4 0">
             <a-camera 
                 look-controls 
-                fly-controls="fly: true; speed: 5;">
+                wasd-controls="acceleration: 1000; speed: 0.1;" 
+                fly-controls="fly: true; speed: 0.1;">
                 <a-cursor color="#FF0000"></a-cursor>
             </a-camera>
         </a-entity>
