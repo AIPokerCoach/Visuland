@@ -12,12 +12,9 @@
         a-scene { height: 100vh; }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-
 </head>
 <body>
     <a-scene>
-
-        
         <a-assets>
             <!-- Load images -->
             <script>
@@ -55,146 +52,91 @@
                 });
 
                 const azulejosElement = document.createElement('img');
-            azulejosElement.setAttribute('id', 'azulejos');
-            azulejosElement.setAttribute('src', 'textures/Azulejos.png'); // Updated path
-            document.body.appendChild(azulejosElement);
+                azulejosElement.setAttribute('id', 'azulejos');
+                azulejosElement.setAttribute('src', 'textures/Azulejos.png');
+                document.body.appendChild(azulejosElement);
 
-    const ceilingElement = document.createElement('img');
-    ceilingElement.setAttribute('id', 'ceiling');
-    ceilingElement.setAttribute('src', 'textures/Ceiling.png'); // Update the path if necessary
-    document.body.appendChild(ceilingElement);
+                const ceilingElement = document.createElement('img');
+                ceilingElement.setAttribute('id', 'ceiling');
+                ceilingElement.setAttribute('src', 'textures/Ceiling.png');
+                document.body.appendChild(ceilingElement);
 
-// Load sounds
-const sounds = [
-    "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
-    "Ball", "Balloon", "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle",
-    "Bird", "Boat", "Bone", "Book", "Bottle", "Bowl", "Box", "Bracelet", "Brain",
-    "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", "Carrot", "Castle", "Cat",
-    "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Clock", "Coffee", "Coin",
-    "Cold", "Cookie", "Couch", "Cow", "Doctor", "Dog", "Doll", "Door", "Dress",
-    "Duck", "Earring", "Egg", "Eight", "Eye", "Face", "Farm", "Finger", "Fire",
-    "Fish", "Five", "Flour", "Flower", "Fork", "Four", "Fruit", "Garlic", "Glass",
-    "Glove", "Grape", "Green", "Hand", "Hat", "Head", "Health", "Heart", "Heavy",
-    "Help", "History", "Hook", "Horse", "Hose", "Hospital", "Hot", "House", "Husband",
-    "Jug", "Key", "Kite", "Knife", "Large", "Left", "Leg", "Lemon", "Lentil", "Lion",
-    "Long", "Luggage", "Man", "Mattress", "Milk", "Mirror", "Money", "Monkey", "Month",
-    "Morning", "Mouse", "Mouth", "Mushroom", "Name", "Nest", "Nine", "North", "Nose",
-    "Oat", "Office", "Oil", "One", "Onion", "Oven", "Owl", "Oxygen", "Pants", "Pear",
-    "Pen", "Pencil", "Pepper", "Pig", "Pink", "Plum", "Pool", "Popcorn", "Purple",
-    "Rabbit", "Rag", "Red", "Rice", "Salt", "Sandal", "Scissors", "Scooter", "Seven",
-    "Shampoo", "Sheep", "Shirt", "Shoe", "Short", "Shovel", "Sister", "Six", "Skin",
-    "Small", "Smile", "Snake", "Sock", "Soup", "South", "Spinach", "Spoon", "Strawberry",
-    "Study", "Table", "Taco", "Tea", "Teacher", "Ten", "Three", "Toaster", "Tomato",
-    "Tree", "Triangle", "Truck", "Two", "Wallet", "Want", "Water", "Watermelon", 
-    "Wheel", "White", "Window", "Yellow"
-];
+                // Load sounds
+                const sounds = [
+                    "Airplane", "Almond", "Ankle", "Apple", "Apron", "Arm", "Art", "Baby", "Bag",
+                    "Ball", "Balloon", "Bathroom", "Bear", "Bed", "Bee", "Belt", "Bench", "Bicycle",
+                    "Bird", "Boat", "Bone", "Book", "Bottle", "Bowl", "Box", "Bracelet", "Brain",
+                    "Bread", "Broom", "Bucket", "Cake", "Candy", "Car", "Carrot", "Castle", "Cat",
+                    "Chair", "Cheese", "Cherry", "Chicken", "Chocolate", "Clock", "Coffee", "Coin",
+                    "Cold", "Cookie", "Couch", "Cow", "Doctor", "Dog", "Doll", "Door", "Dress",
+                    "Duck", "Earring", "Egg", "Eight", "Eye", "Face", "Farm", "Finger", "Fire",
+                    "Fish", "Five", "Flour", "Flower", "Fork", "Four", "Fruit", "Garlic", "Glass",
+                    "Glove", "Grape", "Green", "Hand", "Hat", "Head", "Health", "Heart", "Heavy",
+                    "Help", "History", "Hook", "Horse", "Hose", "Hospital", "Hot", "House", "Husband",
+                    "Jug", "Key", "Kite", "Knife", "Large", "Left", "Leg", "Lemon", "Lentil", "Lion",
+                    "Long", "Luggage", "Man", "Mattress", "Milk", "Mirror", "Money", "Monkey", "Month",
+                    "Morning", "Mouse", "Mouth", "Mushroom", "Name", "Nest", "Nine", "North", "Nose",
+                    "Oat", "Office", "Oil", "One", "Onion", "Oven", "Owl", "Oxygen", "Pants", "Pear",
+                    "Pen", "Pencil", "Pepper", "Pig", "Pink", "Plum", "Pool", "Popcorn", "Purple",
+                    "Rabbit", "Rag", "Red", "Rice", "Salt", "Sandal", "Scissors", "Scooter", "Seven",
+                    "Shampoo", "Sheep", "Shirt", "Shoe", "Short", "Shovel", "Sister", "Six", "Skin",
+                    "Small", "Smile", "Snake", "Sock", "Soup", "South", "Spinach", "Spoon", "Strawberry",
+                    "Study", "Table", "Taco", "Tea", "Teacher", "Ten", "Three", "Toaster", "Tomato",
+                    "Tree", "Triangle", "Truck", "Two", "Wallet", "Want", "Water", "Watermelon", 
+                    "Wheel", "White", "Window", "Yellow"
+                ];
 
-sounds.forEach((sound) => {
-    const soundPath = `sounds/${sound}.mp3`; // Assuming your sounds are in .mp3 format
-    const audioElement = document.createElement('audio');
-    audioElement.setAttribute('id', sound.toLowerCase());
-    audioElement.setAttribute('src', soundPath);
-    document.body.appendChild(audioElement);
-});
-
-
-
-                
-</script>
-
-                
-            
+                sounds.forEach((sound) => {
+                    const soundPath = `sounds/${sound}.mp3`; // Assuming your sounds are in .mp3 format
+                    const audioElement = document.createElement('audio');
+                    audioElement.setAttribute('id', sound.toLowerCase());
+                    audioElement.setAttribute('src', soundPath);
+                    document.body.appendChild(audioElement);
+                });
+            </script>
         </a-assets>
 
-       <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
-    <!-- Camera entity with look-controls and virtual joystick -->
-    <a-camera look-controls>
-        <!-- Virtual joystick for movement on mobile -->
-        <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
-        <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
-        <a-cursor color="#FF0000"></a-cursor>
-    </a-camera>
-</a-entity>
+        <!-- Enhanced Camera with Mobile Controls -->
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="0 1.6 0">
+            <a-camera>
+                <a-cursor></a-cursor>
+            </a-camera>
+        </a-entity>
 
- <script>
-        // Ensure the script runs after the scene and elements have fully loaded
-        window.addEventListener('DOMContentLoaded', () => {
-            const cameraRig = document.getElementById('cameraRig');
-            const camera = document.querySelector('#mainCamera');
+        <!-- Environment with sky and ground -->
+        <a-sky color="#87CEEB"></a-sky>
+        <a-plane rotation="-90 0 0" width="100" height="100" color="#A9A9A9" repeat="10 10" shadow></a-plane>
 
-            // Listen for the wheel event to detect scroll
-            window.addEventListener('wheel', function(event) {
-                // Set the movement speed for the scroll amount
-                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
+        <a-entity position="0 0.1 -2">
+            <a-image src="#azulejos" height="2" width="2" position="0 0 0" rotation="0 0 0" class="card"></a-image>
+            <a-image src="#ceiling" height="2" width="2" position="0 0 0.1" rotation="0 0 0" class="card"></a-image>
+        </a-entity>
 
-                // Calculate the movement direction
-                const direction = new THREE.Vector3();
-                camera.object3D.getWorldDirection(direction);
+        <!-- Interactive Tiles -->
+        <a-entity class="tiles">
+            <a-image id="tile1" src="#Aexplainer1" position="-3 0.5 -4" width="1" height="1" class="tile"></a-image>
+            <a-image id="tile2" src="#Aexplainer2" position="0 0.5 -4" width="1" height="1" class="tile"></a-image>
+            <a-image id="tile3" src="#Aflag" position="3 0.5 -4" width="1" height="1" class="tile"></a-image>
+            <a-image id="tile4" src="#Aimage" position="-4 1.5 -6" width="1" height="1" class="tile"></a-image>
+            <a-image id="tile5" src="#Airplane" position="4 1.5 -6" width="1" height="1" class="tile"></a-image>
+            <a-image id="tile6" src="#Almond" position="0 1.5 -6" width="1" height="1" class="tile"></a-image>
+        </a-entity>
 
-                // Determine scroll direction (forward or backward)
-                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-
-                // Adjust the position of the camera rig using the direction vector
-                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-                
-                // Apply the new position to the camera rig
-                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
-            });
-        });
-    </script>
-
-        <!-- Floor with Azulejos -->
-    <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
-        
-        <a-plane position="0 6 0" rotation="90 0 0" width="125" height="125" src="#ceiling" repeat="10 10"></a-plane>
-
-        
-        
-        
-        <!-- Exterior Walls -->
-        <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
-        <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
-        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>   <!-- Front Wall -->
-
-        <!-- Cubes -->
+        <!-- Tile Interaction -->
         <script>
-            const spacing = 7.2; // Spacing between cubes
-            const rows = 15; // Rows
-            const cols = 15; // Columns
-            
-            for (let i = 0; i < images.length; i++) {
-                const x = (i % cols) * spacing - (cols * spacing) / 2 + spacing / 2;
-                const z = Math.floor(i / cols) * spacing - (rows * spacing) / 2 + spacing / 2;
-                const imgId = images[i].toLowerCase();
-
-                // Create a cube for each image
-                const cube = document.createElement('a-box');
-                cube.setAttribute('src', `#${imgId}`);
-                cube.setAttribute('position', `${x} 1.5 ${z}`);
-                cube.setAttribute('width', '3'); // Cube size
-                cube.setAttribute('height', '3'); // Cube size
-                cube.setAttribute('depth', '3'); // Cube size
-
-                 // Add a click event listener to the cube
-        cube.addEventListener('click', () => {
-            // Handle what happens when the cube is clicked
-            console.log(`Cube with image ${imgId} clicked!`);
-            
-            // Optionally: Play the corresponding sound
-            const soundElement = document.getElementById(imgId.toLowerCase());
-            console.log(soundElement); // Log the soundElement to see its value
-            console.log(typeof soundElement); // Log the type
-            if (soundElement) {
-                soundElement.play();
-            }
-        });
-
-        // Add the cube to the scene
-                document.querySelector('a-scene').appendChild(cube);
-            }
+            const tiles = document.querySelectorAll('.tile');
+            tiles.forEach(tile => {
+                tile.addEventListener('click', function () {
+                    const soundId = this.getAttribute('src').split('/')[1].split('.')[0]; // Extract sound ID
+                    const sound = document.getElementById(soundId.toLowerCase());
+                    if (sound) {
+                        sound.currentTime = 0; // Reset sound to the beginning
+                        sound.play(); // Play the sound
+                    }
+                });
+            });
         </script>
     </a-scene>
 </body>
 </html>
+
