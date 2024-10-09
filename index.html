@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Six Spheres</title>
+    <title>Six Spheres with Textures</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body { margin: 0; }
@@ -16,15 +16,14 @@
 
         <a-camera position="0 1.6 10"></a-camera>
 
-        <!-- Spheres -->
-        <a-sphere position="2 1 0" radius="1" color="#FF0000"></a-sphere>  <!-- Right -->
-        <a-sphere position="-2 1 0" radius="1" color="#00FF00"></a-sphere> <!-- Left -->
-        <a-sphere position="0 3 0" radius="1" color="#0000FF"></a-sphere>  <!-- Top -->
-        <a-sphere position="0 -1 0" radius="1" color="#FFFF00"></a-sphere> <!-- Bottom -->
-        <a-sphere position="0 1 2" radius="1" color="#FF00FF"></a-sphere>  <!-- Front -->
-        <a-sphere position="0 1 -2" radius="1" color="#00FFFF"></a-sphere> <!-- Back -->
-
+        <!-- Spheres with Textures -->
+        <a-sphere position="2 1 0" radius="1" src="textures/test3609.jpg"></a-sphere>  <!-- Right -->
+        <a-sphere position="-2 1 0" radius="1" src="textures/test3603.jpg"></a-sphere> <!-- Left -->
+        <a-sphere position="0 3 0" radius="1" src="textures/test3604.jpg"></a-sphere>  <!-- Top -->
+        <a-sphere position="0 -1 0" radius="1" src="textures/test3605.jpg"></a-sphere> <!-- Bottom -->
+        <a-sphere position="0 1 2" radius="1" src="textures/test3607.png"></a-sphere>  <!-- Front -->
+        <a-sphere position="0 1 -2" radius="1" src="textures/test3606.png"></a-sphere> <!-- Back -->
+        
     </a-scene>
 </body>
 </html>
-
