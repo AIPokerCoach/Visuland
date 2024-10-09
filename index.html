@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visulang Gallery in a Square</title>
+    <title>Immersive Spanish: Visulang’s Mnemonic VR Experience</title>
+    <meta name="description" content="Learn Spanish through playful mnemonics in a virtual world! Our innovative method uses vibrant image associations to make language learning fun and effective. Designed for all learners, including those with special needs, we ensure everyone can thrive in their Spanish language journey.">
+
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body { margin: 0; }
         a-scene { height: 100vh; }
     </style>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+
 </head>
 <body>
     <a-scene>
+
+        
         <a-assets>
             <!-- Load images -->
             <script>
@@ -63,6 +69,44 @@
             
         </a-assets>
 
+       <!-- Enhanced Camera with Mobile Controls -->
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
+    <!-- Camera entity with look-controls and virtual joystick -->
+    <a-camera look-controls>
+        <!-- Virtual joystick for movement on mobile -->
+        <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
+        <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+        <a-cursor color="#FF0000"></a-cursor>
+    </a-camera>
+</a-entity>
+
+ <script>
+        // Ensure the script runs after the scene and elements have fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const cameraRig = document.getElementById('cameraRig');
+            const camera = document.querySelector('#mainCamera');
+
+            // Listen for the wheel event to detect scroll
+            window.addEventListener('wheel', function(event) {
+                // Set the movement speed for the scroll amount
+                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
+
+                // Calculate the movement direction
+                const direction = new THREE.Vector3();
+                camera.object3D.getWorldDirection(direction);
+
+                // Determine scroll direction (forward or backward)
+                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
+
+                // Adjust the position of the camera rig using the direction vector
+                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                
+                // Apply the new position to the camera rig
+                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+            });
+        });
+    </script>
+
         <!-- Floor with Azulejos -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
         
@@ -74,8 +118,8 @@
         <!-- Exterior Walls -->
         <a-box position="-62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>  <!-- Left Wall -->
         <a-box position="62.5 3 0" width="0.16" height="6" depth="125" color="#F1BF00"></a-box>   <!-- Right Wall -->
-        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#F1BF00"></a-box>  <!-- Back Wall -->
-        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#F1BF00"></a-box>   <!-- Front Wall -->
+        <a-box position="0 3 -62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>  <!-- Back Wall -->
+        <a-box position="0 3 62.5" width="125" height="6" depth="0.16" color="#AA151B"></a-box>   <!-- Front Wall -->
 
         <!-- Cubes -->
         <script>
