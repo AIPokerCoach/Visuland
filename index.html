@@ -81,7 +81,45 @@ const cubes = [
     { name: "Ball", position: [43.5, 1.5, -50.1], sound: "sounds/Ball.mp3" },
     { name: "Balloon", position: [50.7, 1.5, -50.1], sound: "sounds/Balloon.mp3" }
 ];
+ // Function to load sound
+        const loadSound = (url) => {
+            return new Promise((resolve) => {
+                const audio = new Audio(url);
+                audio.addEventListener('canplaythrough', () => resolve(audio), { once: true });
+                audio.load();
+            });
+        };
 
+        // Load all sounds
+        const soundPromises = cubes.map(cube => loadSound(cube.sound));
+        Promise.all(soundPromises).then(audioElements => {
+            const audioMap = {};
+            cubes.forEach((cube, index) => {
+                audioMap[cube.name] = audioElements[index];
+            });
+
+            // Click event listener
+            window.addEventListener('click', (event) => {
+                const clickPos = [event.clientX, event.clientY]; // You will replace this with your actual 3D position checking
+
+                // Check for each cube if the clicked position matches the cube's position
+                for (const cube of cubes) {
+                    // Use a simple distance check
+                    // Replace with your actual logic to check if clickPos matches the cube's position
+                    const distance = Math.sqrt(
+                        Math.pow(cube.position[0] - clickPos[0], 2) +
+                        Math.pow(cube.position[1] - clickPos[1], 2)
+                    );
+
+                    // If within a certain range, play the sound
+                    if (distance < 10) { // Adjust range as needed
+                        audioMap[cube.name].currentTime = 0; // Rewind to start
+                        audioMap[cube.name].play();
+                        break; // Play one sound per click
+                    }
+                }
+            });
+        });
                 
 </script>
 
@@ -161,36 +199,7 @@ const cubes = [
                 cube.setAttribute('depth', '3'); // Cube size
                 document.querySelector('a-scene').appendChild(cube);
             }
-            // Step 2: Function to check if the click is inside the cube area
-function isClickInsideCube(clickPosition, cube) {
-    const cubeSize = 1; // Adjust this to the half-size of your cubes
-    const [x, y, z] = cube.position;
-
-    return (
-        clickPosition[0] >= x - cubeSize && clickPosition[0] <= x + cubeSize &&
-        clickPosition[1] >= y - cubeSize && clickPosition[1] <= y + cubeSize &&
-        clickPosition[2] >= z - cubeSize && clickPosition[2] <= z + cubeSize
-    );
-}
-
-// Step 3: Add the click event listener
-document.addEventListener('click', function(event) {
-    // Convert event coordinates to world coordinates if needed
-    const clickPosition = [event.clientX, event.clientY, -50.1]; // Adjust the Z as needed based on your setup
-
-    for (const cube of cubes) {
-        if (isClickInsideCube(clickPosition, cube)) {
-            playSound(cube.sound);
-            break; // Exit loop after playing sound
-        }
-    }
-});
-
-// Function to play sound
-function playSound(soundPath) {
-    const audio = new Audio(soundPath);
-    audio.play();
-}
+            
         </script>
     </a-scene>
 </body>
