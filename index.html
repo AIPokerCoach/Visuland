@@ -185,6 +185,7 @@ sounds.forEach((sound) => {
             // Optionally: Play the corresponding sound
             const soundElement = document.getElementById(imgId.toLowerCase());
             console.log(soundElement); // Log the soundElement to see its value
+            console.log(typeof soundElement); // Log the type
             if (soundElement) {
                 soundElement.play();
             }
