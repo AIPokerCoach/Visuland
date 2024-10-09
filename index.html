@@ -12,20 +12,7 @@
         a-scene { height: 100vh; }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-<script>
-    AFRAME.registerComponent('camera-boundary', {
-        schema: {
-            min: {type: 'vec3', default: {x: -62.5, y: 1.4, z: -62.5}},
-            max: {type: 'vec3', default: {x: 62.5, y: 1.4, z: 62.5}}
-        },
-        tick: function () {
-            const position = this.el.object3D.position;
-            position.x = Math.max(this.data.min.x, Math.min(this.data.max.x, position.x));
-            position.y = Math.max(this.data.min.y, Math.min(this.data.max.y, position.y));
-            position.z = Math.max(this.data.min.z, Math.min(this.data.max.z, position.z));
-        }
-    });
-</script>
+
 </head>
 <body>
     <a-scene>
@@ -83,7 +70,7 @@
         </a-assets>
 
        <!-- Enhanced Camera with Mobile Controls -->
-<a-entity id="cameraRig" camera-boundary movement-controls="fly: false; speed: 0.35" position="-5 1.4 20">
+<a-entity id="cameraRig" movement-controls="fly: true; speed: 0.35" position="-5 1.4 20">
     <!-- Camera entity with look-controls and virtual joystick -->
     <a-camera look-controls>
         <!-- Virtual joystick for movement on mobile -->
@@ -93,43 +80,32 @@
     </a-camera>
 </a-entity>
 
-<script>
-    // Ensure the script runs after the scene and elements have fully loaded
-    window.addEventListener('DOMContentLoaded', () => {
-        const cameraRig = document.getElementById('cameraRig');
-        const camera = document.querySelector('#mainCamera');
+ <script>
+        // Ensure the script runs after the scene and elements have fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            const cameraRig = document.getElementById('cameraRig');
+            const camera = document.querySelector('#mainCamera');
 
-        // Define the bounds
-        const minX = -61.5; // 123 / 2
-        const maxX = 61.5;  // 123 / 2
-        const minZ = -61.5; // 123 / 2
-        const maxZ = 61.5;  // 123 / 2
+            // Listen for the wheel event to detect scroll
+            window.addEventListener('wheel', function(event) {
+                // Set the movement speed for the scroll amount
+                const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
 
-        // Listen for the wheel event to detect scroll
-        window.addEventListener('wheel', function(event) {
-            // Set the movement speed for the scroll amount
-            const scrollSpeed = 0.5; // Adjust this value to control scroll sensitivity
+                // Calculate the movement direction
+                const direction = new THREE.Vector3();
+                camera.object3D.getWorldDirection(direction);
 
-            // Calculate the movement direction
-            const direction = new THREE.Vector3();
-            camera.object3D.getWorldDirection(direction);
+                // Determine scroll direction (forward or backward)
+                const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
 
-            // Determine scroll direction (forward or backward)
-            const delta = event.deltaY > 0 ? -scrollSpeed : scrollSpeed;
-
-            // Adjust the position of the camera rig using the direction vector
-            const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
-
-            // Constrain the camera position within the defined bounds
-            newPosition.x = Math.max(minX, Math.min(maxX, newPosition.x));
-            newPosition.z = Math.max(minZ, Math.min(maxZ, newPosition.z));
-
-            // Apply the new position to the camera rig
-            cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+                // Adjust the position of the camera rig using the direction vector
+                const newPosition = cameraRig.object3D.position.clone().add(direction.multiplyScalar(delta));
+                
+                // Apply the new position to the camera rig
+                cameraRig.object3D.position.set(newPosition.x, newPosition.y, newPosition.z);
+            });
         });
-    });
-</script>
-
+    </script>
 
         <!-- Floor with Azulejos -->
     <a-plane position="0 0 0" rotation="-90 0 0" width="125" height="125" src="#azulejos" repeat="10 10"></a-plane>
