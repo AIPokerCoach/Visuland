@@ -3,36 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Six Spheres with Textures</title>
+    <title>Immersive Spanish: Visulang’s Mnemonic VR Experience</title>
+    <meta name="description" content="Learn Spanish through playful mnemonics in a virtual world! Our innovative method uses vibrant image associations to make language learning fun and effective. Designed for all learners, including those with special needs, we ensure everyone can thrive in their Spanish language journey.">
+
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <style>
         body { margin: 0; }
         a-scene { height: 100vh; }
     </style>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 </head>
 <body>
     <a-scene>
-        <a-sky color="#87CEEB"></a-sky>
+        <a-assets>
+            <!-- Load panoramic images -->
+            <img id="sphere1" src="textures/test3602.jpg">
+            <img id="sphere2" src="textures/test3603.jpg">
+            <img id="sphere3" src="textures/test3604.jpg">
+            <img id="sphere4" src="textures/test3605.jpg">
+            <img id="sphere5" src="textures/test3606.png">
+            <img id="sphere6" src="textures/test3607.png">
+        </a-assets>
 
-        <!-- Adjusted camera with extremely slow movement -->
-        <a-camera position="0 1.6 5" wasd-controls="acceleration: 5; fly: true; speed: 0.00001"></a-camera>
+        <!-- Enhanced Camera with Mobile Controls -->
+        <a-entity id="cameraRig" movement-controls="fly: true; speed: 0.003" position="0 1.4 10">
+            <a-camera look-controls>
+                <a-entity id="left-hand" joystick="hand: left; mode: touch"></a-entity>
+                <a-entity id="right-hand" joystick="hand: right; mode: touch"></a-entity>
+                <a-cursor color="#FF0000"></a-cursor>
+            </a-camera>
+        </a-entity>
 
-        <!-- Spheres with Textures -->
-        <a-sphere position="2 1 0" radius="1" src="textures/test3602.jpg" scale="1 1 1"></a-sphere>  <!-- Right -->
-        <a-sphere position="-2 1 0" radius="1" src="textures/test3603.jpg" scale="1 1 1"></a-sphere> <!-- Left -->
-        <a-sphere position="0 3 0" radius="1" src="textures/test3604.jpg" scale="1 1 1"></a-sphere>  <!-- Top -->
-        <a-sphere position="0 -1 0" radius="1" src="textures/test3605.jpg" scale="1 1 1"></a-sphere> <!-- Bottom -->
-        <a-sphere position="0 1 2" radius="1" src="textures/test3609.jpg" scale="1 1 1"></a-sphere>  <!-- Front -->
-        <a-sphere position="0 1 -2" radius="1" src="textures/test3606.png" scale="1 1 1"></a-sphere> <!-- Back -->
-        
-        <!-- Enabling the inside view by setting the spheres to have a double-sided material -->
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3602.jpg; side: double" position="2 1 0"></a-entity>
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3603.jpg; side: double" position="-2 1 0"></a-entity>
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3604.jpg; side: double" position="0 3 0"></a-entity>
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3605.jpg; side: double" position="0 -1 0"></a-entity>
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3609.jpg; side: double" position="0 1 2"></a-entity>
-        <a-entity geometry="primitive: sphere; radius: 1" material="src: textures/test3606.png; side: double" position="0 1 -2"></a-entity>
+        <!-- Black sky -->
+        <a-sky color="#000000"></a-sky>
 
+        <!-- Spheres with panoramic images -->
+        <a-sphere src="#sphere1" radius="1" position="2 1 0" side="double"></a-sphere>
+        <a-sphere src="#sphere2" radius="1" position="-2 1 0" side="double"></a-sphere>
+        <a-sphere src="#sphere3" radius="1" position="0 1 2" side="double"></a-sphere>
+        <a-sphere src="#sphere4" radius="1" position="0 1 -2" side="double"></a-sphere>
+        <a-sphere src="#sphere5" radius="1" position="0 3 0" side="double"></a-sphere>
+        <a-sphere src="#sphere6" radius="1" position="0 -1 0" side="double"></a-sphere>
     </a-scene>
 </body>
 </html>
+
